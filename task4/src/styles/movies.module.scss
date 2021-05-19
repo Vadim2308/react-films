@@ -1,0 +1,20 @@
+.movies {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  color: #ffff;
+  text-align: center;
+  width: 100%;
+  padding: 35px;
+}
+
+.movie {
+  margin-top: 30px;
+  border: 1px solid #ffff;
+  &__item {
+    width: 100%;
+    padding: 15px;
+    color: #ffff;
+    height: 100px;
+  }
+}

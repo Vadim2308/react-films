@@ -1,0 +1,38 @@
+body {
+  margin: 0 auto;
+  border: 0;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+  background-color: #100e19;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  height: 100vh;
+}
+
+.main_inner {
+  display: flex;
+  width: 100%;
+}
