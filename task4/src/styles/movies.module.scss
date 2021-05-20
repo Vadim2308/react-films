@@ -5,16 +5,31 @@
   color: #ffff;
   text-align: center;
   width: 100%;
-  padding: 35px;
+  padding: 0 35px;
 }
 
 .movie {
   margin-top: 30px;
-  border: 1px solid #ffff;
-  &__item {
+  width: 19%;
+  // border: 1px solid #ffff;
+
+  &__inner {
     width: 100%;
-    padding: 15px;
+    padding: 5px;
     color: #ffff;
-    height: 100px;
+    height: 100%;
+    overflow: hidden;
   }
+}
+
+.img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.title {
+  margin-top: 5px;
+  text-transform: uppercase;
 }
