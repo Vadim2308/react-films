@@ -4,6 +4,7 @@ import { API_URL, API_KEY_3 } from '../../api/api';
 import classes from '../../styles/movies.module.scss';
 
 type TProps = {
+  page: number;
   filters: {
     sort_by: string;
   };
@@ -26,9 +27,9 @@ export default class MovieList extends React.Component<TProps, TState> {
     this.getMovies(this.props);
   }
 
-  getMovies = (filters: TProps) => {
+  getMovies = ({ page, filters }: TProps) => {
     const sort_by = this.props.filters.sort_by;
-    const link = `${API_URL}/discover/movie?api_key=${API_KEY_3}&language=ru=RU&sort_by=${sort_by}`;
+    const link = `${API_URL}/discover/movie?api_key=${API_KEY_3}&language=ru=RU&sort_by=${sort_by}&page=${page}`;
     fetch(link)
       .then((response) => response.json())
       .then((data) => {
@@ -42,7 +43,7 @@ export default class MovieList extends React.Component<TProps, TState> {
   };
 
   componentDidUpdate(prevProps: TProps) {
-    if (prevProps.filters !== this.props.filters) {
+    if (prevProps !== this.props) {
       this.getMovies(this.props);
     }
   }

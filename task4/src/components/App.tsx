@@ -6,6 +6,7 @@ import Filters from './Filters/Filters';
 import Pagination from './Pagination/Pagination';
 
 type TState = {
+  page: number;
   filters: {
     sort_by: string;
   };
@@ -15,11 +16,20 @@ class App extends React.Component<{}, TState> {
   constructor(props: {}) {
     super(props);
     this.state = {
+      page: 1,
       filters: {
         sort_by: 'popularity.desc',
       },
     };
   }
+
+  onChangePage = (page: number) => {
+    this.setState(() => {
+      return {
+        page,
+      };
+    });
+  };
 
   onChangeFilter = (event: any) => {
     this.setState((prevState) => {
@@ -31,18 +41,19 @@ class App extends React.Component<{}, TState> {
       };
     });
   };
+
   render() {
-    const { filters } = this.state;
+    const { filters, page } = this.state;
     return (
       <div className={classes.main}>
         <Header />
         <div className={classes.container}>
           <div className={classes.main_inner}>
             <Filters filters={filters} onChangeFilter={this.onChangeFilter} />
-            <MovieList filters={filters} />
+            <MovieList page={page} filters={filters} />
           </div>
         </div>
-        <Pagination />
+        <Pagination page={page} onChangePage={this.onChangePage} />
       </div>
     );
   }
