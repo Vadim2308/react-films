@@ -22,7 +22,11 @@ export default class MovieList extends React.Component<TProps, TState> {
     };
   }
 
-  componentDidMount(): void {
+  componentDidMount() {
+    this.getMovies(this.props);
+  }
+
+  getMovies = (filters: TProps) => {
     const sort_by = this.props.filters.sort_by;
     const link = `${API_URL}/discover/movie?api_key=${API_KEY_3}&language=ru=RU&sort_by=${sort_by}`;
     fetch(link)
@@ -34,6 +38,12 @@ export default class MovieList extends React.Component<TProps, TState> {
           };
         });
       });
+  };
+
+  componentDidUpdate(prevProps: TProps) {
+    if (prevProps.filters !== this.props.filters) {
+      this.getMovies(this.props);
+    }
   }
 
   render() {
