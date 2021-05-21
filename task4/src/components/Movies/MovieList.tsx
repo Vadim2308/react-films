@@ -32,6 +32,7 @@ export default class MovieList extends React.Component<TProps, TState> {
     fetch(link)
       .then((response) => response.json())
       .then((data) => {
+        console.log(data);
         this.setState(() => {
           return {
             movies: data.results,

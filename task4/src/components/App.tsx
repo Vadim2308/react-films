@@ -3,6 +3,7 @@ import classes from '../styles/App.module.scss';
 import Header from './Header/Header';
 import MovieList from './Movies/MovieList';
 import Filters from './Filters/Filters';
+import Pagination from './Pagination/Pagination';
 
 type TState = {
   filters: {
@@ -33,12 +34,15 @@ class App extends React.Component<{}, TState> {
   render() {
     const { filters } = this.state;
     return (
-      <div className={classes.container}>
+      <div className={classes.main}>
         <Header />
-        <div className={classes.main_inner}>
-          <Filters filters={filters} onChangeFilter={this.onChangeFilter} />
-          <MovieList filters={filters} />
+        <div className={classes.container}>
+          <div className={classes.main_inner}>
+            <Filters filters={filters} onChangeFilter={this.onChangeFilter} />
+            <MovieList filters={filters} />
+          </div>
         </div>
+        <Pagination />
       </div>
     );
   }
