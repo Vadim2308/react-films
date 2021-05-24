@@ -1,6 +1,7 @@
 import React, { ReactChild } from 'react';
 import classes from '../../styles/filters.module.scss';
 import filterIcon from '../../assests/images/filters/filter.svg';
+import dropDownIcon from '../../assests/images/filters/down-arrow.svg';
 
 type TProps = {
   filters: {
@@ -17,20 +18,17 @@ class Filters extends React.Component<TProps> {
     } = this.props;
     return (
       <div className={classes.filters}>
-        <div className={classes.filters_item}>
-          <img className={classes.filters_item__img} src={filterIcon} alt="32d3d" />
-          <h3 className={classes.filters_item__title}>Фильтры:</h3>
-        </div>
         <form action="">
-          <label className={classes.filters__sort_by} htmlFor="sort_by">
-            Сортировать:
-          </label>
+          <img className={classes.sort_img} src={dropDownIcon}></img>
           <select
             id="sort_by"
             className={classes.sorting}
             value={sort_by}
             onChange={onChangeFilter}
             name="sort_by">
+            <option selected disabled>
+              Сортировать:
+            </option>
             <option value="popularity.desc">Популярные по убыванию</option>
             <option value="popularity.asc">Популярные по возрастанию</option>
             <option value="vote_average.desc">Рейтинг по убыванию</option>
