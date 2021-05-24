@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { ReactChild } from 'react';
 import classes from '../../styles/filters.module.scss';
-import filterIcon from '../../assests/images/Filters/filter.svg';
+import filterIcon from '../../assests/images/filters/filter.svg';
 
 type TProps = {
   filters: {

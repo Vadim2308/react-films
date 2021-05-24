@@ -1,28 +1,27 @@
 import React from 'react';
 import classes from '../../styles/pagination.module.scss';
+import prevPageIcon from '../../assests/images/pagination/left-arrow.svg';
+import nextPageIcon from '../../assests/images/pagination/right-arrow.svg';
 
 type TProps = {
   page: number;
-  onChangePage: any;
+  onChangePage: (page: number) => void;
 };
 
 export default class Pagination extends React.Component<TProps> {
   render() {
     const { page, onChangePage } = this.props;
     return (
-      <div className={classes.pagination}>
-        <div className={classes.button}>
-          <button
-            disabled={page === 1}
-            onClick={onChangePage.bind(null, page - 1)}
-            className={classes.button__item}>
-            Предыдущая страница
-          </button>
-          <button onClick={onChangePage.bind(null, page + 1)} className={classes.button__item}>
-            Следующая страница
-          </button>
-        </div>
-      </div>
+      <>
+        <img
+          className={classes.prevPage}
+          src={prevPageIcon}
+          onClick={onChangePage.bind(null, page - 1)}></img>
+        <img
+          className={classes.nextPage}
+          src={nextPageIcon}
+          onClick={onChangePage.bind(null, page + 1)}></img>
+      </>
     );
   }
 }

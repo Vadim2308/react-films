@@ -24,6 +24,13 @@ class App extends React.Component<{}, TState> {
   }
 
   onChangePage = (page: number) => {
+    if (page < 1) {
+      this.setState(() => {
+        return {
+          page: (page = 1),
+        };
+      });
+    }
     this.setState(() => {
       return {
         page,
@@ -44,16 +51,17 @@ class App extends React.Component<{}, TState> {
 
   render() {
     const { filters, page } = this.state;
+    console.log(page);
     return (
       <div className={classes.main}>
         <Header />
         <div className={classes.container}>
           <div className={classes.main_inner}>
-            <Filters filters={filters} onChangeFilter={this.onChangeFilter} />
+            <Pagination page={page} onChangePage={this.onChangePage} />
+            {/* <Filters filters={filters} onChangeFilter={this.onChangeFilter} /> */}
             <MovieList page={page} filters={filters} />
           </div>
         </div>
-        <Pagination page={page} onChangePage={this.onChangePage} />
       </div>
     );
   }
