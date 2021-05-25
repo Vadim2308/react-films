@@ -1,4 +1,5 @@
 import React from 'react';
+import altImg from '../../assests/images/movieItem/alt.jpg';
 import classes from '../../styles/movies.module.scss';
 
 type TProps = {
@@ -12,17 +13,19 @@ type TProps = {
     popularity: number;
   };
 };
+
 export default class MovieItem extends React.Component<TProps> {
   render() {
     const { title, backdrop_path, poster_path, vote_average, release_date, popularity } =
       this.props.movie;
+    let poster = `https://image.tmdb.org/t/p/w500${poster_path || backdrop_path}`;
+    if (poster === `https://image.tmdb.org/t/p/w500null`) {
+      poster = `${altImg}`;
+    }
     return (
       <div className={classes.movie}>
         <div className={classes.movie__inner}>
-          <img
-            className={classes.img}
-            src={`https://image.tmdb.org/t/p/w500${poster_path || backdrop_path}`}
-            alt="row"></img>
+          <img className={classes.img} src={poster}></img>
           <h2 className={classes.title}>{title}</h2>
           <div className={classes.active}>
             <div className={classes.active_inner}>
