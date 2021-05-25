@@ -9,6 +9,7 @@ type TState = {
   page: number;
   filters: {
     sort_by: string;
+    year: string;
   };
 };
 
@@ -19,6 +20,7 @@ class App extends React.Component<{}, TState> {
       page: 1,
       filters: {
         sort_by: 'popularity.desc',
+        year: '2021',
       },
     };
   }
@@ -50,6 +52,7 @@ class App extends React.Component<{}, TState> {
   };
 
   render() {
+    console.log(this.state);
     const { filters, page } = this.state;
     console.log(page);
     return (
