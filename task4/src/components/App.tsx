@@ -59,7 +59,6 @@ class App extends React.Component<{}, TState> {
           <Filters filters={filters} onChangeFilter={this.onChangeFilter} />
           <div className={classes.main_inner}>
             <Pagination page={page} onChangePage={this.onChangePage} />
-
             <MovieList page={page} filters={filters} />
           </div>
         </div>

@@ -48,6 +48,7 @@ export default class MovieList extends React.Component<TProps, TState> {
   }
 
   render() {
+    console.log(this.state);
     const { movies } = this.state;
     return (
       <div className={classes.movies}>

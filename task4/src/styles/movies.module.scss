@@ -15,14 +15,12 @@
   overflow: hidden;
   box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.5);
   border-radius: 8px;
-
   &__inner {
     width: 100%;
     color: #ffff;
     height: 100%;
     overflow: hidden;
     border-radius: 8px;
-    padding: 3px;
     transition: all 0.3s cubic-bezier(0.8, 0.5, 0.2, 1.4);
     &:hover {
       transition: all 0.3s cubic-bezier(0.8, 0.5, 0.2, 1.4);
@@ -64,16 +62,40 @@
   position: absolute;
   transition: all 0.3s cubic-bezier(0.8, 0.5, 0.2, 1.4);
   z-index: 2;
+  height: 100%;
+  bottom: 0;
+  width: 100%;
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
 
-  bottom: 150px;
+.active_inner {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  top: 50%;
   &__rating {
     color: rgb(255, 255, 255);
-    font-size: 35px;
+    font-size: 25px;
     margin-left: 10px;
+    text-align: left;
   }
   &__release {
     color: rgb(255, 255, 255);
-    font-size: 15px;
+    font-size: 18px;
     margin-left: 10px;
+    text-align: left;
+    font-weight: bold;
+    &:nth-child(2n) {
+      margin-top: 15px;
+    }
+  }
+  &__span {
+    font-family: 'Cuprum', sans-serif;
+    color: #ea0042;
+    padding: 10px;
+    font-size: 35px;
+    font-weight: bold;
   }
 }

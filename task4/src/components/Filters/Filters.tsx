@@ -26,9 +26,7 @@ class Filters extends React.Component<TProps> {
             value={sort_by}
             onChange={onChangeFilter}
             name="sort_by">
-            <option selected disabled>
-              Сортировать:
-            </option>
+            <option disabled>Сортировать:</option>
             <option value="popularity.desc">Популярные по убыванию</option>
             <option value="popularity.asc">Популярные по возрастанию</option>
             <option value="vote_average.desc">Рейтинг по убыванию</option>
