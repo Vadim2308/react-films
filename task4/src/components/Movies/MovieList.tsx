@@ -7,6 +7,7 @@ type TProps = {
   page: number;
   filters: {
     sort_by: string;
+    year: string;
   };
 };
 
@@ -27,9 +28,21 @@ export default class MovieList extends React.Component<TProps, TState> {
     this.getMovies(this.props);
   }
 
-  getMovies = ({ page, filters }: TProps) => {
-    const sort_by = this.props.filters.sort_by;
-    const link = `${API_URL}/discover/movie?api_key=${API_KEY_3}&language=ru=RU&sort_by=${sort_by}&page=${page}`;
+  getMovies = ({ page }: TProps) => {
+    const {
+      filters: { sort_by, year },
+    } = this.props;
+    if (year.length > 4) {
+      const firstDate = year.slice(0, 4);
+      const secondDate = year.slice(5, 10);
+      const link = `${API_URL}/discover/movie?api_key=${API_KEY_3}&language=ru=RU&sort_by=${sort_by}&page=${page}&primary_release_date.gte=${firstDate}-01-01&primary_release_date.lte=${secondDate}-01-01`;
+      return this.changeState(link);
+    }
+    const link = `${API_URL}/discover/movie?api_key=${API_KEY_3}&language=ru=RU&sort_by=${sort_by}&page=${page}&primary_release_year=${year}`;
+    return this.changeState(link);
+  };
+
+  changeState = (link: string) => {
     fetch(link)
       .then((response) => response.json())
       .then((data) => {

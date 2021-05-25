@@ -52,7 +52,6 @@ class App extends React.Component<{}, TState> {
   };
 
   render() {
-    console.log(this.state);
     const { filters, page } = this.state;
     console.log(page);
     return (

@@ -29,6 +29,14 @@ const ReleaseYear = ({ year, onChangeFilter }: TProps) => {
       label: '2000-2017',
       value: '2000-2017',
     },
+    {
+      label: '1980-1999',
+      value: '1980-1999',
+    },
+    {
+      label: '1950-1979',
+      value: '1950-1979',
+    },
   ];
 
   return (
