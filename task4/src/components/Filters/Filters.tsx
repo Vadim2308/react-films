@@ -1,6 +1,7 @@
 import React from 'react';
 import SortBy from './SortBy';
 import ReleaseYear from './ReleaseYear';
+import Genres from './Genres';
 import classes from '../../styles/filters.module.scss';
 
 type TProps = {
@@ -21,6 +22,7 @@ class Filters extends React.Component<TProps> {
       <div className={classes.filters}>
         <SortBy sort_by={sort_by} onChangeFilter={onChangeFilter} />
         <ReleaseYear year={year} onChangeFilter={onChangeFilter} />
+        <Genres />
       </div>
     );
   }

@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import classes from '../../styles/filters.module.scss';
 import dropDownIcon from '../../assests/images/filters/down-arrow.svg';
 
@@ -39,13 +39,21 @@ const ReleaseYear = ({ year, onChangeFilter }: TProps) => {
     },
   ];
 
+  const [visiblePopup, setVisiblePopup] = useState(true);
+  const toggleVisiblePopup = () => {
+    setVisiblePopup(!visiblePopup);
+  };
+
   return (
     <form action="">
-      <img className={classes.year_img} src={dropDownIcon}></img>
+      <img
+        className={visiblePopup ? classes.year_img : classes.year_img__active}
+        src={dropDownIcon}></img>
       <select
         id="year"
         className={classes.sorting__year}
         value={year}
+        onClick={toggleVisiblePopup.bind(null)}
         onChange={onChangeFilter}
         name="year">
         <option disabled>Год:</option>

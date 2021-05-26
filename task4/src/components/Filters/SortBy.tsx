@@ -1,5 +1,6 @@
 import classes from '../../styles/filters.module.scss';
 import dropDownIcon from '../../assests/images/filters/down-arrow.svg';
+import { useState } from 'react';
 
 type TProps = {
   sort_by: string;
@@ -26,13 +27,21 @@ const SortBy = ({ sort_by, onChangeFilter }: TProps) => {
     },
   ];
 
+  const [visiblePopup, setVisiblePopup] = useState(true);
+  const toggleVisiblePopup = () => {
+    setVisiblePopup(!visiblePopup);
+  };
+
   return (
     <form action="">
-      <img className={classes.sort_img} src={dropDownIcon}></img>
+      <img
+        className={visiblePopup ? classes.sort_img : classes.sort_img__active}
+        src={dropDownIcon}></img>
       <select
         id="sort_by"
         className={classes.sorting}
         value={sort_by}
+        onClick={toggleVisiblePopup.bind(null)}
         onChange={onChangeFilter}
         name="sort_by">
         <option disabled>Сортировать:</option>

@@ -25,6 +25,14 @@ a {
   text-decoration: none;
 }
 
+li {
+  list-style-type: none;
+}
+ul {
+  margin-left: 0;
+  padding-left: 0;
+}
+
 button {
   padding: 0;
   border: none;
@@ -39,6 +47,7 @@ button {
   max-width: 1280px;
   margin: 0 auto;
   height: auto;
+  padding: 0 30px;
 }
 
 .main {
