@@ -5,15 +5,20 @@ import dropDownIcon from '../../assests/images/filters/down-arrow.svg';
 import selectIcon from '../../assests/images/filters/selected.svg';
 
 type TState = {
-  genres: Array<any>;
   visiblePopup: boolean;
   rotatedArrow: boolean;
 };
-class Genres extends React.Component<{}, TState> {
-  constructor(props: {}) {
+
+type TProps = {
+  getGenre: (data: any) => void;
+  genres: Array<any>;
+  handleChangeGanre: (genre: string) => void;
+};
+
+class Genres extends React.Component<TProps, TState> {
+  constructor(props: TProps) {
     super(props);
     this.state = {
-      genres: [],
       visiblePopup: false,
       rotatedArrow: false,
     };
@@ -24,11 +29,7 @@ class Genres extends React.Component<{}, TState> {
     fetch(link)
       .then((response) => response.json())
       .then((data) => {
-        this.setState((genre) => {
-          return {
-            genres: data.genres,
-          };
-        });
+        return this.props.getGenre(data);
       });
   };
 
@@ -47,8 +48,13 @@ class Genres extends React.Component<{}, TState> {
     }
   };
 
+  clickCheckBox = (event: any) => {
+    this.props.handleChangeGanre(event);
+  };
+
   render() {
-    const { genres, visiblePopup, rotatedArrow } = this.state;
+    const { visiblePopup, rotatedArrow } = this.state;
+    const { genres } = this.props;
     return (
       <div data-set="input" className={classes.genre} onClick={this.handleClick}>
         <div data-set="input" className={classes.genre_header}>
@@ -67,7 +73,13 @@ class Genres extends React.Component<{}, TState> {
             return (
               <li key={genre.id} className={classes.genre_element}>
                 <label className={classes.genre_item}>
-                  <input value={genre.id} className={classes.input} type="checkbox" />
+                  <input
+                    onClick={this.clickCheckBox.bind(null)}
+                    id={genre.id}
+                    value={genre.name}
+                    className={classes.input}
+                    type="checkbox"
+                  />
                   <h3 className={classes.title}>{name}</h3>
                   <img className={classes.item_img} src={selectIcon}></img>
                 </label>

@@ -10,6 +10,8 @@ type TState = {
   filters: {
     sort_by: string;
     year: string;
+    genres: Array<any>;
+    with_genre: Array<any>;
   };
 };
 
@@ -20,7 +22,9 @@ class App extends React.Component<{}, TState> {
       page: 1,
       filters: {
         sort_by: 'popularity.desc',
-        year: '2021',
+        year: String(new Date().getFullYear()),
+        genres: [],
+        with_genre: [],
       },
     };
   }
@@ -51,14 +55,48 @@ class App extends React.Component<{}, TState> {
     });
   };
 
+  getGenre = (data: any) => {
+    this.setState((prevState) => {
+      return {
+        filters: {
+          ...prevState.filters,
+          genres: data.genres,
+        },
+      };
+    });
+  };
+
+  handleChangeGanre = (event: any) => {
+    const id = event.target.id;
+    const { with_genre } = this.state.filters;
+    let newGenre: Array<any> = [];
+    if (with_genre.includes(id)) {
+      newGenre = with_genre.filter((el) => el != id);
+    } else {
+      newGenre.push(...with_genre, id);
+    }
+    this.setState((prevState) => {
+      return {
+        filters: {
+          ...prevState.filters,
+          with_genre: newGenre,
+        },
+      };
+    });
+  };
+
   render() {
     const { filters, page } = this.state;
-    console.log(page);
     return (
       <div className={classes.main}>
         <Header />
         <div className={classes.container}>
-          <Filters filters={filters} onChangeFilter={this.onChangeFilter} />
+          <Filters
+            filters={filters}
+            onChangeFilter={this.onChangeFilter}
+            getGenre={this.getGenre}
+            handleChangeGanre={this.handleChangeGanre}
+          />
           <div className={classes.main_inner}>
             <Pagination page={page} onChangePage={this.onChangePage} />
             <MovieList page={page} filters={filters} />
