@@ -13,19 +13,27 @@ class Genres extends React.Component<{}, TState> {
   constructor(props: {}) {
     super(props);
     this.state = {
-      genres: [
-        {
-          id: 28,
-          name: 'боевик',
-        },
-        {
-          id: 12,
-          name: 'приключения',
-        },
-      ],
+      genres: [],
       visiblePopup: false,
       rotatedArrow: false,
     };
+  }
+
+  getGenres = () => {
+    const link = `${API_URL}/genre/movie/list?api_key=${API_KEY_3}&language=Ru-ru`;
+    fetch(link)
+      .then((response) => response.json())
+      .then((data) => {
+        this.setState((genre) => {
+          return {
+            genres: data.genres,
+          };
+        });
+      });
+  };
+
+  componentDidMount() {
+    return this.getGenres();
   }
 
   handleClick = (event: any) => {
@@ -45,7 +53,7 @@ class Genres extends React.Component<{}, TState> {
       <div data-set="input" className={classes.genre} onClick={this.handleClick}>
         <div data-set="input" className={classes.genre_header}>
           <h2 data-set="input" className={classes.genre_header__title}>
-            Жанры:
+            Жанры
           </h2>
           <img
             data-set="input"
@@ -57,7 +65,7 @@ class Genres extends React.Component<{}, TState> {
             let name = genre.name;
             name = name.charAt(0).toUpperCase() + name.slice(1);
             return (
-              <li className={classes.genre_element}>
+              <li key={genre.id} className={classes.genre_element}>
                 <label className={classes.genre_item}>
                   <input value={genre.id} className={classes.input} type="checkbox" />
                   <h3 className={classes.title}>{name}</h3>
