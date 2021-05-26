@@ -159,15 +159,38 @@
     z-index: 10;
     width: 100%;
     background-color: #312b45;
-    padding: 15px;
+    padding: 5px;
     transition: 0.2s ease-in;
   }
+}
+
+.genre_element {
+  margin: 16px 0;
+  position: relative;
+}
+
+.title {
+  font-size: 15px;
 }
 
 .genre_item {
   display: block;
   cursor: pointer;
+  &:hover .item_img {
+    opacity: 0.5;
+  }
+}
+
+.item_img {
+  opacity: 0;
+  position: absolute;
+  top: 20%;
+  right: 2px;
 }
 
 .input {
+  display: none;
+}
+.input:checked ~ .item_img {
+  opacity: 1;
 }

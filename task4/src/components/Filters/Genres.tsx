@@ -2,6 +2,7 @@ import React from 'react';
 import { API_URL, API_KEY_3 } from '../../api/api';
 import classes from '../../styles/filters.module.scss';
 import dropDownIcon from '../../assests/images/filters/down-arrow.svg';
+import selectIcon from '../../assests/images/filters/selected.svg';
 
 type TState = {
   genres: Array<any>;
@@ -56,10 +57,11 @@ class Genres extends React.Component<{}, TState> {
             let name = genre.name;
             name = name.charAt(0).toUpperCase() + name.slice(1);
             return (
-              <li>
+              <li className={classes.genre_element}>
                 <label className={classes.genre_item}>
-                  <input className={classes.input} type="checkbox" />
-                  <h3>{name}</h3>
+                  <input value={genre.id} className={classes.input} type="checkbox" />
+                  <h3 className={classes.title}>{name}</h3>
+                  <img className={classes.item_img} src={selectIcon}></img>
                 </label>
               </li>
             );
