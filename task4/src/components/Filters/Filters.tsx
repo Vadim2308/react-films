@@ -8,11 +8,11 @@ type TProps = {
   filters: {
     sort_by: string;
     year: string;
-    genres: Array<any>;
+    genres: { id: number; name: string }[];
   };
   onChangeFilter: (event: any) => void;
   getGenre: (event: any) => void;
-  handleChangeGanre: (genre: string) => void;
+  handleChangeGanre: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 class Filters extends React.Component<TProps> {

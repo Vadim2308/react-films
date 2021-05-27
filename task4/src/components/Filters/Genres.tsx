@@ -11,8 +11,8 @@ type TState = {
 
 type TProps = {
   getGenre: (data: any) => void;
-  genres: Array<any>;
-  handleChangeGanre: (genre: string) => void;
+  genres: { id: number; name: string }[];
+  handleChangeGanre: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 class Genres extends React.Component<TProps, TState> {
@@ -75,8 +75,7 @@ class Genres extends React.Component<TProps, TState> {
                 <label className={classes.genre_item}>
                   <input
                     onClick={this.clickCheckBox.bind(null)}
-                    id={genre.id}
-                    value={genre.name}
+                    value={genre.id}
                     className={classes.input}
                     type="checkbox"
                   />

@@ -10,8 +10,8 @@ type TState = {
   filters: {
     sort_by: string;
     year: string;
-    genres: Array<any>;
-    with_genre: Array<any>;
+    genres: { id: number; name: string }[];
+    with_genre: Array<string>;
   };
 };
 
@@ -44,7 +44,7 @@ class App extends React.Component<{}, TState> {
     });
   };
 
-  onChangeFilter = (event: any) => {
+  onChangeFilter = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.setState((prevState) => {
       return {
         filters: {
@@ -66,12 +66,12 @@ class App extends React.Component<{}, TState> {
     });
   };
 
-  handleChangeGanre = (event: any) => {
-    const id = event.target.id;
+  handleChangeGanre = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const id = event.target.value;
     const { with_genre } = this.state.filters;
-    let newGenre: Array<any> = [];
+    let newGenre: Array<string> = [];
     if (with_genre.includes(id)) {
-      newGenre = with_genre.filter((el) => el != id);
+      newGenre = with_genre.filter((el) => el !== id);
     } else {
       newGenre.push(...with_genre, id);
     }
