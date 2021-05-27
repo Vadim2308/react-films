@@ -1,4 +1,4 @@
-import classes from '../../styles/movies.module.scss';
+import classes from 'styles/movies.module.scss';
 import React from 'react';
 
 type TState = {

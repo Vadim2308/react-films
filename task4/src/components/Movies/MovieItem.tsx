@@ -1,6 +1,6 @@
 import React from 'react';
-import altImg from '../../assests/images/movieItem/alt.jpg';
-import classes from '../../styles/movies.module.scss';
+import altImg from 'assests/images/movieItem/alt.jpg';
+import classes from 'styles/movies.module.scss';
 
 type TProps = {
   movie: {

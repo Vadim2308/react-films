@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import classes from '../../styles/filters.module.scss';
-import dropDownIcon from '../../assests/images/filters/down-arrow.svg';
+import classes from 'styles/filters.module.scss';
+import dropDownIcon from 'assests/images/filters/down-arrow.svg';
 
 type TProps = {
   year: string;

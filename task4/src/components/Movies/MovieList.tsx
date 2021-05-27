@@ -1,8 +1,8 @@
 import React from 'react';
 import MovieItem from './MovieItem';
-import { API_URL, API_KEY_STORE_FILM } from '../../api/api';
+import { API_URL, API_KEY_STORE_FILM } from 'api/api';
 import Page404 from './Page404';
-import classes from '../../styles/movies.module.scss';
+import classes from 'styles/movies.module.scss';
 
 type TProps = {
   page: number;

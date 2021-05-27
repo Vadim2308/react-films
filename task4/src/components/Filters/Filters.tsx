@@ -2,7 +2,7 @@ import React from 'react';
 import SortBy from './SortBy';
 import ReleaseYear from './ReleaseYear';
 import Genres from './Genres';
-import classes from '../../styles/filters.module.scss';
+import classes from 'styles/filters.module.scss';
 
 type TProps = {
   filters: {

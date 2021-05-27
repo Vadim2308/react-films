@@ -1,8 +1,8 @@
 import React from 'react';
-import { API_URL, API_KEY_STORE_FILM } from '../../api/api';
-import classes from '../../styles/filters.module.scss';
-import dropDownIcon from '../../assests/images/filters/down-arrow.svg';
-import selectIcon from '../../assests/images/filters/selected.svg';
+import { API_URL, API_KEY_STORE_FILM } from 'api/api';
+import classes from 'styles/filters.module.scss';
+import dropDownIcon from 'assests/images/filters/down-arrow.svg';
+import selectIcon from 'assests/images/filters/selected.svg';
 
 type TState = {
   visiblePopup: boolean;

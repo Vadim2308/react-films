@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from '../styles/App.module.scss';
+import classes from 'styles/App.module.scss';
 import Header from './Header/Header';
 import MovieList from './Movies/MovieList';
 import Filters from './Filters/Filters';

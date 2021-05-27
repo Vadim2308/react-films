@@ -1,7 +1,7 @@
 import React from 'react';
-import classes from '../../styles/pagination.module.scss';
-import prevPageIcon from '../../assests/images/pagination/left-arrow.svg';
-import nextPageIcon from '../../assests/images/pagination/right-arrow.svg';
+import classes from 'styles/pagination.module.scss';
+import prevPageIcon from 'assests/images/pagination/left-arrow.svg';
+import nextPageIcon from 'assests/images/pagination/right-arrow.svg';
 
 type TProps = {
   page: number;
