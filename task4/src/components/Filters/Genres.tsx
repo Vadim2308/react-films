@@ -1,5 +1,5 @@
 import React from 'react';
-import { API_URL, API_KEY_3 } from '../../api/api';
+import { API_URL, API_KEY_STORE_FILM } from '../../api/api';
 import classes from '../../styles/filters.module.scss';
 import dropDownIcon from '../../assests/images/filters/down-arrow.svg';
 import selectIcon from '../../assests/images/filters/selected.svg';
@@ -25,7 +25,7 @@ class Genres extends React.Component<TProps, TState> {
   }
 
   getGenres = () => {
-    const link = `${API_URL}/genre/movie/list?api_key=${API_KEY_3}&language=Ru-ru`;
+    const link = `${API_URL}/genre/movie/list?api_key=${API_KEY_STORE_FILM}&language=Ru-ru`;
     fetch(link)
       .then((response) => response.json())
       .then((data) => {

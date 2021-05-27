@@ -1,6 +1,6 @@
 import React from 'react';
 import MovieItem from './MovieItem';
-import { API_URL, API_KEY_3 } from '../../api/api';
+import { API_URL, API_KEY_STORE_FILM } from '../../api/api';
 import Page404 from './Page404';
 import classes from '../../styles/movies.module.scss';
 
@@ -39,10 +39,10 @@ export default class MovieList extends React.Component<TProps, TState> {
     if (year.length > 4) {
       const firstDate = year.slice(0, 4);
       const secondDate = year.slice(5, 10);
-      const link = `${API_URL}/discover/movie?api_key=${API_KEY_3}&language=ru=RU&sort_by=${sort_by}&page=${page}&primary_release_date.gte=${firstDate}-01-01&primary_release_date.lte=${secondDate}-01-01`;
+      const link = `${API_URL}/discover/movie?api_key=${API_KEY_STORE_FILM}&language=ru=RU&sort_by=${sort_by}&page=${page}&primary_release_date.gte=${firstDate}-01-01&primary_release_date.lte=${secondDate}-01-01`;
       return this.changeState(link);
     }
-    const link = `${API_URL}/discover/movie?api_key=${API_KEY_3}&language=ru=RU&sort_by=${sort_by}&page=${page}&primary_release_year=${year}&with_genres=${currentGenre}`;
+    const link = `${API_URL}/discover/movie?api_key=${API_KEY_STORE_FILM}&language=ru=RU&sort_by=${sort_by}&page=${page}&primary_release_year=${year}&with_genres=${currentGenre}`;
     return this.changeState(link);
   };
 

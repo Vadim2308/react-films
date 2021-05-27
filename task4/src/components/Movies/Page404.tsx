@@ -5,7 +5,7 @@ type TState = {
   loading: boolean;
 };
 
-class Page404 extends React.Component<{}, TState> {
+export default class Page404 extends React.Component<{}, TState> {
   constructor(props: {}) {
     super(props);
     this.state = {
@@ -33,5 +33,3 @@ class Page404 extends React.Component<{}, TState> {
     }
   }
 }
-
-export default Page404;
