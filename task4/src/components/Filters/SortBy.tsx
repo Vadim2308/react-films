@@ -4,31 +4,31 @@ import { useState } from 'react';
 
 type TProps = {
   sort_by: string;
-  onChangeFilter: (event: any) => void;
+  onChangeFilter: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 
-const SortBy = ({ sort_by, onChangeFilter }: TProps) => {
-  const options = [
-    {
-      label: 'Популярные по убыванию',
-      value: 'popularity.desc',
-    },
-    {
-      label: 'Популярные по возрастанию',
-      value: 'popularity.asc',
-    },
-    {
-      label: 'Рейтинг по убыванию',
-      value: 'vote_average.desc',
-    },
-    {
-      label: 'Рейтинг по возрастанию',
-      value: 'vote_average.asc',
-    },
-  ];
+const options = [
+  {
+    label: 'Популярные по убыванию',
+    value: 'popularity.desc',
+  },
+  {
+    label: 'Популярные по возрастанию',
+    value: 'popularity.asc',
+  },
+  {
+    label: 'Рейтинг по убыванию',
+    value: 'vote_average.desc',
+  },
+  {
+    label: 'Рейтинг по возрастанию',
+    value: 'vote_average.asc',
+  },
+];
 
+const SortBy = ({ sort_by, onChangeFilter }: TProps) => {
   const [visiblePopup, setVisiblePopup] = useState(true);
-  const toggleVisiblePopup = () => {
+  const toggleVisiblePopup: React.MouseEventHandler<HTMLSelectElement> = () => {
     setVisiblePopup(!visiblePopup);
   };
 
@@ -42,7 +42,7 @@ const SortBy = ({ sort_by, onChangeFilter }: TProps) => {
         className={classes.sorting}
         value={sort_by}
         onClick={toggleVisiblePopup.bind(null)}
-        onChange={onChangeFilter}
+        onChange={(event) => onChangeFilter(event)}
         name="sort_by">
         <option disabled>Сортировать:</option>
         {options.map((element) => {

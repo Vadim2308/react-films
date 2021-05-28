@@ -46,7 +46,7 @@
     font-family: 'Cuprum', sans-serif;
     padding: 15px;
     font-size: 17px;
-    width: 121px;
+    width: 250px;
     border: none;
     height: 55px;
     overflow: hidden;
@@ -85,7 +85,7 @@
 .year_img {
   position: absolute;
   top: 38px;
-  left: 373px;
+  left: 500px;
   z-index: 1000;
   padding: 0 1em;
   pointer-events: none;
@@ -93,7 +93,7 @@
   &__active {
     position: absolute;
     top: 38px;
-    left: 373px;
+    left: 500px;
     z-index: 1000;
     padding: 0 1em;
     pointer-events: none;

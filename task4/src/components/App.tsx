@@ -4,15 +4,11 @@ import Header from './Header/Header';
 import MovieList from './Movies/MovieList';
 import Filters from './Filters/Filters';
 import Pagination from './Pagination/Pagination';
+import { IFilters, TGenre } from 'types/global';
 
 type TState = {
   page: number;
-  filters: {
-    sort_by: string;
-    year: string;
-    genres: { id: number; name: string }[];
-    with_genre: Array<string>;
-  };
+  filters: IFilters;
 };
 
 class App extends React.Component<{}, TState> {
@@ -24,7 +20,7 @@ class App extends React.Component<{}, TState> {
         sort_by: 'popularity.desc',
         year: String(new Date().getFullYear()),
         genres: [],
-        with_genre: [],
+        filteredGenre: [],
       },
     };
   }
@@ -44,48 +40,50 @@ class App extends React.Component<{}, TState> {
     });
   };
 
-  onChangeFilter = (event: React.ChangeEvent<HTMLInputElement>) => {
+  onChangeFilter = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const name = event.currentTarget.name;
+    const value = event.currentTarget.value;
     this.setState((prevState) => {
       return {
         filters: {
           ...prevState.filters,
-          [event.target.name]: event.target.value,
+          [name]: value,
         },
       };
     });
   };
 
-  getGenre = (data: any) => {
+  setGenre = (data: TGenre[]) => {
     this.setState((prevState) => {
       return {
         filters: {
           ...prevState.filters,
-          genres: data.genres,
+          genres: data,
         },
       };
     });
   };
 
-  handleChangeGanre = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const id = event.target.value;
-    const { with_genre } = this.state.filters;
-    let newGenre: Array<string> = [];
-    if (with_genre.includes(id)) {
-      newGenre = with_genre.filter((el) => el !== id);
+  handleChangeGanre = (id: string) => {
+    const { filteredGenre } = this.state.filters;
+    let newGenre: string[] = [];
+    if (filteredGenre.includes(id)) {
+      newGenre = filteredGenre.filter((el) => el !== id);
     } else {
-      newGenre.push(...with_genre, id);
+      newGenre.push(...filteredGenre, id);
     }
     this.setState((prevState) => {
       return {
         filters: {
           ...prevState.filters,
-          with_genre: newGenre,
+          filteredGenre: newGenre,
         },
       };
     });
   };
 
   render() {
+    console.log(this.state);
     const { filters, page } = this.state;
     return (
       <div className={classes.main}>
@@ -94,7 +92,7 @@ class App extends React.Component<{}, TState> {
           <Filters
             filters={filters}
             onChangeFilter={this.onChangeFilter}
-            getGenre={this.getGenre}
+            setGenre={this.setGenre}
             handleChangeGanre={this.handleChangeGanre}
           />
           <div className={classes.main_inner}>

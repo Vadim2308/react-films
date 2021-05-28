@@ -1,17 +1,10 @@
 import React from 'react';
 import altImg from 'assests/images/movieItem/alt.jpg';
 import classes from 'styles/movies.module.scss';
+import { TMovie } from 'types/global';
 
 type TProps = {
-  movie: {
-    key: number;
-    title: string;
-    backdrop_path: string;
-    poster_path: string;
-    vote_average: string;
-    release_date: string;
-    popularity: number;
-  };
+  movie: TMovie;
 };
 
 export default class MovieItem extends React.Component<TProps> {

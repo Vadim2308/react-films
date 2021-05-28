@@ -3,20 +3,14 @@ import MovieItem from './MovieItem';
 import { API_URL, API_KEY_STORE_FILM } from 'api/api';
 import Page404 from './Page404';
 import classes from 'styles/movies.module.scss';
+import { IFilters, IFilms, TMovie } from 'types/global';
 
 type TProps = {
   page: number;
-  filters: {
-    sort_by: string;
-    year: string;
-    genres: Array<any>;
-    with_genre: Array<any>;
-  };
+  filters: IFilters;
 };
 
-type TState = {
-  movies: Array<any>;
-};
+type TState = IFilms;
 
 export default class MovieList extends React.Component<TProps, TState> {
   constructor(props: TProps) {
@@ -33,9 +27,9 @@ export default class MovieList extends React.Component<TProps, TState> {
 
   getMovies = ({ page }: TProps) => {
     const {
-      filters: { sort_by, year, genres, with_genre },
+      filters: { sort_by, year, filteredGenre },
     } = this.props;
-    const currentGenre = with_genre.join(',');
+    const currentGenre = filteredGenre.join(',');
     if (year.length > 4) {
       const firstDate = year.slice(0, 4);
       const secondDate = year.slice(5, 10);

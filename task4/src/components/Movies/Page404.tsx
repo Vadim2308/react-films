@@ -1,5 +1,6 @@
 import classes from 'styles/movies.module.scss';
 import React from 'react';
+import { clearInterval } from 'timers';
 
 type TState = {
   loading: boolean;
@@ -11,6 +12,10 @@ export default class Page404 extends React.Component<{}, TState> {
     this.state = {
       loading: false,
     };
+  }
+
+  componentWillUnmount() {
+    this.setState({ loading: false });
   }
 
   componentDidMount() {
