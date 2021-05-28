@@ -27,16 +27,16 @@ export default class MovieList extends React.Component<TProps, TState> {
 
   getMovies = ({ page }: TProps) => {
     const {
-      filters: { sort_by, year, filteredGenre },
+      filters: { sort_by, year, filteredGenre, voite },
     } = this.props;
     const currentGenre = filteredGenre.join(',');
     if (year.length > 4) {
       const firstDate = year.slice(0, 4);
       const secondDate = year.slice(5, 10);
-      const link = `${API_URL}/discover/movie?api_key=${API_KEY_STORE_FILM}&language=ru=RU&sort_by=${sort_by}&page=${page}&primary_release_date.gte=${firstDate}-01-01&primary_release_date.lte=${secondDate}-01-01`;
+      const link = `${API_URL}/discover/movie?api_key=${API_KEY_STORE_FILM}&language=ru=RU&sort_by=${sort_by}&page=${page}&primary_release_date.gte=${firstDate}-01-01&primary_release_date.lte=${secondDate}-01-01&vote_average.gte=${voite}`;
       return this.changeState(link);
     }
-    const link = `${API_URL}/discover/movie?api_key=${API_KEY_STORE_FILM}&language=ru=RU&sort_by=${sort_by}&page=${page}&primary_release_year=${year}&with_genres=${currentGenre}`;
+    const link = `${API_URL}/discover/movie?api_key=${API_KEY_STORE_FILM}&language=ru=RU&sort_by=${sort_by}&page=${page}&primary_release_year=${year}&with_genres=${currentGenre}&vote_average.gte=${voite}`;
     return this.changeState(link);
   };
 

@@ -2,6 +2,7 @@ import React from 'react';
 import SortBy from './SortBy';
 import { ReleaseYear } from './ReleaseYear';
 import Genres from './Genres';
+import VoiteAverage from './VoiteAverage';
 import classes from 'styles/filters.module.scss';
 import { IFilters, TGenre } from 'types/global';
 
@@ -15,7 +16,7 @@ type TProps = {
 class Filters extends React.Component<TProps> {
   render() {
     const {
-      filters: { sort_by, year, genres },
+      filters: { sort_by, year, genres, voite },
       onChangeFilter,
       setGenre,
       handleChangeGanre,
@@ -25,6 +26,7 @@ class Filters extends React.Component<TProps> {
         <SortBy sort_by={sort_by} onChangeFilter={onChangeFilter} />
         <ReleaseYear year={year} onChangeFilter={onChangeFilter} />
         <Genres genres={genres} setGenre={setGenre} handleChangeGanre={handleChangeGanre} />
+        <VoiteAverage voite={voite} onChangeFilter={onChangeFilter} />
       </div>
     );
   }

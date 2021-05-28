@@ -26,7 +26,7 @@ class Genres extends React.Component<IProps, TState> {
   }
 
   getGenres = () => {
-    const link = `${API_URL}/genre/movie/list?api_key=${API_KEY_STORE_FILM}&language=Ru-ru`;
+    const link = `${API_URL}/genre/movie/list?api_key=${API_KEY_STORE_FILM}&language=ru-RU`;
     fetch(link)
       .then((response) => response.json())
       .then((data) => {
@@ -57,7 +57,6 @@ class Genres extends React.Component<IProps, TState> {
   render() {
     const { visiblePopup, rotatedArrow } = this.state;
     const { genres } = this.props;
-    console.log(genres);
     return (
       <div data-set="input" className={classes.genre} onClick={this.handleClick}>
         <div data-set="input" className={classes.genre_header}>

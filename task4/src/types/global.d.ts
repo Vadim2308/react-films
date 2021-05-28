@@ -10,6 +10,7 @@ export interface IFilters {
   year: string;
   genres: TGenre[];
   filteredGenre: string[];
+  voite: string;
 }
 
 export type TMovie = {

@@ -21,6 +21,7 @@ class App extends React.Component<{}, TState> {
         year: String(new Date().getFullYear()),
         genres: [],
         filteredGenre: [],
+        voite: '',
       },
     };
   }
@@ -43,6 +44,7 @@ class App extends React.Component<{}, TState> {
   onChangeFilter = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const name = event.currentTarget.name;
     const value = event.currentTarget.value;
+    console.log(name, value);
     this.setState((prevState) => {
       return {
         filters: {
@@ -83,7 +85,7 @@ class App extends React.Component<{}, TState> {
   };
 
   render() {
-    console.log(this.state);
+    console.log(this.state.filters);
     const { filters, page } = this.state;
     return (
       <div className={classes.main}>
