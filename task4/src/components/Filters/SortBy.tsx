@@ -33,27 +33,29 @@ const SortBy = ({ sort_by, onChangeFilter }: TProps) => {
   };
 
   return (
-    <form action="">
-      <img
-        className={visiblePopup ? classes.sort_img : classes.sort_img__active}
-        src={dropDownIcon}></img>
-      <select
-        id="sort_by"
-        className={classes.sorting}
-        value={sort_by}
-        onClick={toggleVisiblePopup.bind(null)}
-        onChange={(event) => onChangeFilter(event)}
-        name="sort_by">
-        <option disabled>Сортировать:</option>
-        {options.map((element) => {
-          return (
-            <option key={element.value} value={element.value}>
-              {element.label}
-            </option>
-          );
-        })}
-      </select>
-    </form>
+    <div className={classes.sort_by}>
+      <form action="">
+        <img
+          className={visiblePopup ? classes.sort_img : classes.sort_img__active}
+          src={dropDownIcon}></img>
+        <select
+          id="sort_by"
+          className={classes.sorting}
+          value={sort_by}
+          onClick={toggleVisiblePopup.bind(null)}
+          onChange={(event) => onChangeFilter(event)}
+          name="sort_by">
+          <option disabled>Сортировать:</option>
+          {options.map((element) => {
+            return (
+              <option key={element.value} value={element.value}>
+                {element.label}
+              </option>
+            );
+          })}
+        </select>
+      </form>
+    </div>
   );
 };
 

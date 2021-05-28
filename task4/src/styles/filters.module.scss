@@ -6,6 +6,10 @@
   background-color: #1f1b2e;
   padding: 16px;
   border-radius: 6px;
+}
+
+.sort_by {
+  width: 25%;
   position: relative;
 }
 
@@ -23,7 +27,7 @@
   padding: 15px;
   border: none;
   height: 55px;
-  width: 250px;
+  width: 100%;
   overflow: hidden;
   border-radius: 0.25em;
   transition: 0.2s ease-in;
@@ -46,13 +50,12 @@
     font-family: 'Cuprum', sans-serif;
     padding: 15px;
     font-size: 17px;
-    width: 250px;
+    width: 100%;
     border: none;
     height: 55px;
     overflow: hidden;
     border-radius: 0.25em;
     transition: 0.2s ease-in;
-    margin-left: 25px;
     &:hover {
       transition: 0.2s ease-in;
     }
@@ -64,16 +67,16 @@
 
 .sort_img {
   position: absolute;
-  top: 38px;
-  left: 227px;
+  top: 22px;
+  right: 5px;
   z-index: 1000;
   padding: 0 1em;
   pointer-events: none;
   transition: 0.2s ease-in;
   &__active {
     position: absolute;
-    top: 38px;
-    left: 227px;
+    top: 22px;
+    right: 5px;
     z-index: 1000;
     padding: 0 1em;
     pointer-events: none;
@@ -82,18 +85,24 @@
   }
 }
 
+.release_year {
+  width: 25%;
+  position: relative;
+  margin-left: 25px;
+}
+
 .year_img {
   position: absolute;
-  top: 38px;
-  left: 500px;
+  top: 22px;
+  right: 5px;
   z-index: 1000;
   padding: 0 1em;
   pointer-events: none;
   transition: 0.2s ease-in;
   &__active {
     position: absolute;
-    top: 38px;
-    left: 500px;
+    top: 22px;
+    right: 5px;
     z-index: 1000;
     padding: 0 1em;
     pointer-events: none;
@@ -113,7 +122,7 @@
   padding: 15px;
   border: none;
   height: auto;
-  width: 250px;
+  width: 25%;
   border-radius: 0.25em;
   transition: 0.2s ease-in;
   margin-left: 25px;

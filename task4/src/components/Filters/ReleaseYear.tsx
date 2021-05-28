@@ -45,27 +45,29 @@ const ReleaseYear = ({ year, onChangeFilter }: TProps) => {
   };
 
   return (
-    <form action="">
-      <img
-        className={visiblePopup ? classes.year_img : classes.year_img__active}
-        src={dropDownIcon}></img>
-      <select
-        id="year"
-        className={classes.sorting__year}
-        value={year}
-        onClick={toggleVisiblePopup.bind(null)}
-        onChange={(event) => onChangeFilter(event)}
-        name="year">
-        <option disabled>Год:</option>
-        {releases.map((element) => {
-          return (
-            <option key={element.value} value={element.value}>
-              {element.label}
-            </option>
-          );
-        })}
-      </select>
-    </form>
+    <div className={classes.release_year}>
+      <form action="">
+        <img
+          className={visiblePopup ? classes.year_img : classes.year_img__active}
+          src={dropDownIcon}></img>
+        <select
+          id="year"
+          className={classes.sorting__year}
+          value={year}
+          onClick={toggleVisiblePopup.bind(null)}
+          onChange={(event) => onChangeFilter(event)}
+          name="year">
+          <option disabled>Год:</option>
+          {releases.map((element) => {
+            return (
+              <option key={element.value} value={element.value}>
+                {element.label}
+              </option>
+            );
+          })}
+        </select>
+      </form>
+    </div>
   );
 };
 
