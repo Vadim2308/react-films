@@ -41,6 +41,21 @@ class App extends React.Component<{}, TState> {
     });
   };
 
+  resetState = () => {
+    this.setState((prevState: TState) => {
+      return {
+        page: 1,
+        filters: {
+          sort_by: 'popularity.desc',
+          year: String(new Date().getFullYear()),
+          genres: prevState.filters.genres,
+          filteredGenre: [],
+          voite: '',
+        },
+      };
+    });
+  };
+
   onChangeFilter = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const name = event.currentTarget.name;
     const value = event.currentTarget.value;
@@ -85,7 +100,7 @@ class App extends React.Component<{}, TState> {
   };
 
   render() {
-    console.log(this.state.filters);
+    // console.log(this.state.filters.filteredGenre);
     const { filters, page } = this.state;
     return (
       <div className={classes.main}>
@@ -96,6 +111,7 @@ class App extends React.Component<{}, TState> {
             onChangeFilter={this.onChangeFilter}
             setGenre={this.setGenre}
             handleChangeGanre={this.handleChangeGanre}
+            resetState={this.resetState}
           />
           <div className={classes.main_inner}>
             <Pagination page={page} onChangePage={this.onChangePage} />

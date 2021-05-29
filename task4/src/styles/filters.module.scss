@@ -1,6 +1,7 @@
 .filters {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   color: white;
   width: 100%;
   height: auto;
@@ -89,7 +90,6 @@
 .release_year {
   width: 25%;
   position: relative;
-  // margin-left: 25px;
 }
 
 .year_img {
@@ -126,7 +126,6 @@
   width: 20%;
   border-radius: 0.25em;
   transition: 0.2s ease-in;
-  // margin-left: 25px;
   cursor: pointer;
   align-items: center;
   border-radius: 0.25em;
@@ -200,4 +199,31 @@
 }
 .input:checked ~ .item_img {
   opacity: 1;
+}
+
+//reset
+
+.reset {
+  margin-top: 25px;
+  transition: 0.2s linear;
+
+  &__title {
+    font-size: 17px;
+    font-family: 'Cuprum', sans-serif;
+    font-weight: bold;
+    margin-left: 7px;
+  }
+
+  &:hover {
+    color: #ea0042;
+  }
+  &__checkboxes {
+    width: 100%;
+    display: none;
+  }
+}
+
+.label {
+  display: flex;
+  cursor: pointer;
 }

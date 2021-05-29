@@ -57,6 +57,7 @@ class Genres extends React.Component<IProps, TState> {
   render() {
     const { visiblePopup, rotatedArrow } = this.state;
     const { genres } = this.props;
+    console.log(this.state);
     return (
       <div data-set="input" className={classes.genre} onClick={this.handleClick}>
         <div data-set="input" className={classes.genre_header}>
@@ -77,6 +78,7 @@ class Genres extends React.Component<IProps, TState> {
               <li key={genre.id} className={classes.genre_element}>
                 <label className={classes.genre_item}>
                   <input
+                    name={name}
                     onClick={this.clickCheckBox}
                     value={id}
                     className={classes.input}
