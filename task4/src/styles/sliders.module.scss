@@ -1,0 +1,16 @@
+.sliders {
+  display: flex;
+  justify-content: center;
+  height: auto;
+  width: 100%;
+}
+
+.slider {
+  display: none;
+
+  &__active {
+    display: block;
+    height: auto;
+    width: 100%;
+  }
+}

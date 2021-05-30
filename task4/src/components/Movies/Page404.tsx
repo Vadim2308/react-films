@@ -14,10 +14,6 @@ export default class Page404 extends React.Component<{}, TState> {
     };
   }
 
-  componentWillUnmount() {
-    this.setState({ loading: false });
-  }
-
   componentDidMount() {
     setTimeout(() => {
       this.setState({ loading: true });

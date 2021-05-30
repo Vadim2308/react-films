@@ -18,7 +18,7 @@ type TProps = {
 class Filters extends React.Component<TProps> {
   render() {
     const {
-      filters: { sort_by, year, genres, voite, filteredGenre },
+      filters: { sort_by, year, genres, voite },
       onChangeFilter,
       setGenre,
       handleChangeGanre,

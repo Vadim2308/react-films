@@ -43,7 +43,7 @@ const SortBy = ({ sort_by, onChangeFilter }: TProps) => {
           className={classes.sorting}
           value={sort_by}
           onClick={toggleVisiblePopup.bind(null)}
-          onChange={(event) => onChangeFilter(event)}
+          onChange={onChangeFilter}
           name="sort_by">
           <option disabled>Сортировать:</option>
           {options.map((element) => {

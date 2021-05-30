@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from 'styles/App.module.scss';
 import Header from './Header/Header';
+import Slider from './Slider/Slider';
 import MovieList from './Movies/MovieList';
 import Filters from './Filters/Filters';
 import Pagination from './Pagination/Pagination';
@@ -100,12 +101,12 @@ class App extends React.Component<{}, TState> {
   };
 
   render() {
-    // console.log(this.state.filters.filteredGenre);
     const { filters, page } = this.state;
     return (
       <div className={classes.main}>
         <Header />
         <div className={classes.container}>
+          <Slider />
           <Filters
             filters={filters}
             onChangeFilter={this.onChangeFilter}
