@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import SliderItem from './SliderItem';
 import { SliderData } from './SlidersData';
 import leftArrow from 'assests/images/pagination/left-arrow.svg';
@@ -7,10 +7,25 @@ import classes from 'styles/sliders.module.scss';
 
 const Slider = () => {
   const [current, setCurrent] = useState(0);
+
+  const delay = 10000;
+
+  useEffect(() => {
+    const interval = setTimeout(
+      () => setCurrent((prevSlider) => (prevSlider === SliderData.length - 1 ? 0 : prevSlider + 1)),
+      delay,
+    );
+    return () => {
+      clearTimeout(interval);
+    };
+  }, [current]);
+
   if (!Array.isArray(SliderData) || SliderData.length <= 0) {
     return null;
   }
+
   const changeSlide = (current: any) => {
+    console.log(current);
     if (current === SliderData.length) {
       setCurrent(0);
       return;
@@ -20,12 +35,6 @@ const Slider = () => {
       return;
     }
     setCurrent(current);
-  };
-
-  const startTimer = () => {
-    setInterval(() => {
-      changeSlide(current + 1);
-    }, 2000);
   };
 
   return (

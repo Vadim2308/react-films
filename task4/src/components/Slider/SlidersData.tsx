@@ -15,4 +15,12 @@ export const SliderData = [
     image:
       'https://thumbs.dfs.ivi.ru/storage29/contents/b/b/efaf763493d7b5ac38b86ed51bb439.jpg/1216x370/',
   },
+  {
+    image:
+      'https://thumbs.dfs.ivi.ru/storage26/contents/5/6/204a0aa7530ae023e8157afe586482.jpg/1216x370/',
+  },
+  {
+    image:
+      'https://thumbs.dfs.ivi.ru/storage23/contents/5/2/589485dda50a74fccd586b45118adc.jpg/1216x370/',
+  },
 ];
