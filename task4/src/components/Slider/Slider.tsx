@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import SliderItem from './SliderItem';
 import { SliderData } from './SlidersData';
 import leftArrow from 'assests/images/pagination/left-arrow.svg';
@@ -6,13 +6,11 @@ import rightArrow from 'assests/images/pagination/right-arrow.svg';
 import classes from 'styles/sliders.module.scss';
 
 const Slider = () => {
-  const [current, setCurrent] = useState(0);
-
+  const [current, setCurrent] = useState<number>(0);
   const delay = 10000;
-
   useEffect(() => {
     const interval = setTimeout(
-      () => setCurrent((prevSlider) => (prevSlider === SliderData.length - 1 ? 0 : prevSlider + 1)),
+      () => setCurrent((current) => (current === SliderData.length - 1 ? 0 : current + 1)),
       delay,
     );
     return () => {
@@ -24,8 +22,7 @@ const Slider = () => {
     return null;
   }
 
-  const changeSlide = (current: any) => {
-    console.log(current);
+  const changeSlide = (current: number): void => {
     if (current === SliderData.length) {
       setCurrent(0);
       return;
@@ -37,12 +34,18 @@ const Slider = () => {
     setCurrent(current);
   };
 
+  console.log(current);
+
   return (
     <div className={classes.sliders}>
       <SliderItem activeSlide={current} />
-      <img onClick={() => changeSlide(current - 1)} src={leftArrow} className={classes.btn_left} />
       <img
-        onClick={() => changeSlide(current + 1)}
+        onClick={changeSlide.bind(null, current - 1)}
+        src={leftArrow}
+        className={classes.btn_left}
+      />
+      <img
+        onClick={changeSlide.bind(null, current + 1)}
         src={rightArrow}
         className={classes.btn_right}
       />

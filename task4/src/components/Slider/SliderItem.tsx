@@ -1,7 +1,11 @@
 import classes from 'styles/sliders.module.scss';
 import { SliderData } from './SlidersData';
 
-const SliderItem = ({ activeSlide }: any) => {
+type TProps = {
+  activeSlide: number;
+};
+
+const SliderItem = ({ activeSlide }: TProps) => {
   return (
     <div className={classes.sliders_items}>
       {SliderData.map((slide, index) => {
@@ -9,7 +13,7 @@ const SliderItem = ({ activeSlide }: any) => {
           <div
             key={index}
             className={index === activeSlide ? classes.slider__active : classes.slider}>
-            <img className={classes.slider__item} src={slide.image} />
+            <img className={classes.slider__item} src={slide.image} alt="slider" />
           </div>
         );
       })}

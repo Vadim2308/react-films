@@ -23,4 +23,16 @@ export const SliderData = [
     image:
       'https://thumbs.dfs.ivi.ru/storage23/contents/5/2/589485dda50a74fccd586b45118adc.jpg/1216x370/',
   },
+  {
+    image:
+      'https://thumbs.dfs.ivi.ru/storage2/contents/9/0/43f8fc600fc38490be7c67861e39be.jpg/1216x370/',
+  },
+  {
+    image:
+      'https://thumbs.dfs.ivi.ru/storage26/contents/0/8/c9eaa8b4f9e106885d3d02fb309293.jpg/1216x370/',
+  },
+  {
+    image:
+      'https://thumbs.dfs.ivi.ru/storage39/contents/5/0/cd00a84d5a7315f156145944709c54.jpg/1216x370/',
+  },
 ];
