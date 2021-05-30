@@ -1,16 +1,56 @@
 .sliders {
-  display: flex;
-  justify-content: center;
+  position: relative;
   height: auto;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+.sliders_items {
+  display: block;
+}
 .slider {
-  display: none;
+  transition: 0.7s ease-in-out;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
 
   &__active {
-    display: block;
+    opacity: 1;
     height: auto;
+    transition: 0.7s ease-in-out;
+  }
+  &__item {
     width: 100%;
+  }
+}
+
+.btn_left {
+  position: absolute;
+  cursor: pointer;
+  z-index: 1;
+  left: -25px;
+  top: 50%;
+  transform: rotate(-180deg);
+  opacity: 0.7;
+  transition: 0.2s linear;
+  &:hover {
+    opacity: 1;
+    transition: 0.2s linear;
+  }
+}
+
+.btn_right {
+  position: absolute;
+  cursor: pointer;
+  z-index: 1;
+  right: -25px;
+  top: 50%;
+  opacity: 0.7;
+  transition: 0.2s linear;
+  &:hover {
+    opacity: 1;
+    transition: 0.2s linear;
   }
 }
