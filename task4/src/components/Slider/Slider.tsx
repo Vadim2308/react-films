@@ -34,8 +34,6 @@ const Slider = () => {
     setCurrent(current);
   };
 
-  console.log(current);
-
   return (
     <div className={classes.sliders}>
       <SliderItem activeSlide={current} />

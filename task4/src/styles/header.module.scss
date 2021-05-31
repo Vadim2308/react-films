@@ -1,7 +1,21 @@
 .header {
-  text-align: center;
-  color: white;
+  display: flex;
+  color: #ffff;
+  justify-content: space-between;
   height: 70px;
-  padding: 25px;
+  padding: 5px;
   text-transform: uppercase;
+  &__inner {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    color: #ffff;
+  }
+}
+
+.login {
+  &__btn {
+    margin-top: 15px;
+    font-size: 25px;
+  }
 }

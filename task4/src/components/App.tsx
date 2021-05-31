@@ -104,8 +104,8 @@ class App extends React.Component<{}, TState> {
     const { filters, page } = this.state;
     return (
       <div className={classes.main}>
-        <Header />
         <div className={classes.container}>
+          <Header />
           <Slider />
           <Filters
             filters={filters}
