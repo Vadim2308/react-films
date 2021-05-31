@@ -1,8 +1,30 @@
 import React from 'react';
+import LoginForm from 'components/Header/LoginForm';
 import { API_URL, API_KEY_STORE_FILM } from 'api/api';
+// import { Modal, ModalBody } from 'reactstrap';
+import Modal from 'react-modal';
 import classes from 'styles/header.module.scss';
 
-export default class Login extends React.Component {
+interface IState {
+  modal: boolean;
+}
+
+export default class Login extends React.Component<{}, IState> {
+  constructor(props: any) {
+    super(props);
+    this.state = {
+      modal: false,
+    };
+  }
+
+  toggleModal = () => {
+    this.setState((prevState) => {
+      return {
+        modal: !prevState.modal,
+      };
+    });
+  };
+
   sendPromises = async () => {
     const fetchApi = (url: any, options = {}) => {
       return new Promise((resolve, reject) => {
@@ -60,11 +82,29 @@ export default class Login extends React.Component {
   };
 
   render() {
+    console.log(this.state);
     return (
       <div className={classes.login}>
-        <button onClick={this.sendPromises} className={classes.login__btn} type="button">
+        <button onClick={this.toggleModal.bind(null)} className={classes.login__btn} type="button">
           Войти
         </button>
+        <Modal
+          isOpen={this.state.modal}
+          onRequestClose={this.toggleModal.bind(null)}
+          style={{
+            overlay: {
+              backgroundColor: 'transparent',
+            },
+            content: {
+              margin: '150px auto',
+              height: '330px',
+              width: '330px',
+              overflow: 'hidden',
+              borderRadius: '8px',
+            },
+          }}>
+          <LoginForm />
+        </Modal>
       </div>
     );
   }
