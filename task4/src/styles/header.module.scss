@@ -58,12 +58,18 @@
     padding: 15px;
     border-radius: 8px;
     font-size: 20px;
-    margin-top: 10px;
     display: block;
-    margin: 35px auto;
+    margin: 15px auto;
   }
 }
 
 .form_inputs {
   display: block;
+}
+
+.warning {
+  margin: 5px;
+  color: #ea7000;
+  text-align: left;
+  font-size: 15px;
 }
