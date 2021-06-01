@@ -13,7 +13,7 @@ export default class Login extends React.Component<{}, IState> {
   constructor(props: any) {
     super(props);
     this.state = {
-      modal: false,
+      modal: true,
     };
   }
 
@@ -93,6 +93,7 @@ export default class Login extends React.Component<{}, IState> {
           onRequestClose={this.toggleModal.bind(null)}
           style={{
             overlay: {
+              zIndex: 20,
               backgroundColor: 'transparent',
             },
             content: {
@@ -101,6 +102,8 @@ export default class Login extends React.Component<{}, IState> {
               width: '330px',
               overflow: 'hidden',
               borderRadius: '8px',
+              backgroundColor: '#312b45',
+              zIndex: 20,
             },
           }}>
           <LoginForm />
