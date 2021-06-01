@@ -8,6 +8,7 @@ import Pagination from './Pagination/Pagination';
 import { IFilters, TGenre } from 'types/global';
 
 type TState = {
+  user?: null;
   page: number;
   filters: IFilters;
 };
@@ -16,6 +17,7 @@ class App extends React.Component<{}, TState> {
   constructor(props: {}) {
     super(props);
     this.state = {
+      user: null,
       page: 1,
       filters: {
         sort_by: 'popularity.desc',
@@ -26,6 +28,15 @@ class App extends React.Component<{}, TState> {
       },
     };
   }
+
+  updateUser = (user: any) => {
+    this.setState((prevState) => {
+      return {
+        ...prevState,
+        user: user,
+      };
+    });
+  };
 
   onChangePage = (page: number) => {
     if (page < 1) {
@@ -101,11 +112,11 @@ class App extends React.Component<{}, TState> {
   };
 
   render() {
-    const { filters, page } = this.state;
+    const { filters, page, user } = this.state;
     return (
       <div className={classes.main}>
         <div className={classes.container}>
-          <Header />
+          <Header user={user} updateUser={this.updateUser} />
           <Slider />
           <Filters
             filters={filters}

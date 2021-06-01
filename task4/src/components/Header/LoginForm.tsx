@@ -10,15 +10,21 @@ interface IState {
     password?: string;
     invalid?: string;
   };
+  disable: boolean;
 }
 
-export default class LoginForm extends React.Component<{}, IState> {
-  constructor(props: any) {
+interface IProps {
+  updateUser: (user: any) => void;
+}
+
+export default class LoginForm extends React.Component<IProps, IState> {
+  constructor(props: IProps) {
     super(props);
     this.state = {
       username: '',
       password: '',
       errors: {},
+      disable: false,
     };
   }
 
@@ -37,10 +43,11 @@ export default class LoginForm extends React.Component<{}, IState> {
             resolve(data);
           })
           .catch((response) => {
-            response.json().then(() => {
+            response.json().then((error: any) => {
               this.setState((prevState) => {
                 return {
                   ...prevState,
+                  disable: false,
                   errors: {
                     invalid: 'Неверный логин и/или пароль.',
                   },
@@ -82,7 +89,10 @@ export default class LoginForm extends React.Component<{}, IState> {
         }),
       },
     );
-    console.log(session_id);
+    const user: any = await fetchApi(
+      `${API_URL}/account?api_key=${API_KEY_STORE_FILM}&session_id=${session_id}`,
+    );
+    this.props.updateUser(user);
   };
 
   changeInput = (event: any) => {
@@ -112,6 +122,7 @@ export default class LoginForm extends React.Component<{}, IState> {
     event.preventDefault();
     const errors = this.validatingInputs();
     if (errors.username === '' && errors.password === '') {
+      this.setState({ disable: true });
       this.LoginUser();
     } else {
       return;
@@ -131,8 +142,7 @@ export default class LoginForm extends React.Component<{}, IState> {
   };
 
   render() {
-    const { username, password, errors } = this.state;
-    console.log(errors);
+    const { username, password, errors, disable } = this.state;
     return (
       <div className={classes.modal}>
         <form className={classes.login_form}>
@@ -167,7 +177,8 @@ export default class LoginForm extends React.Component<{}, IState> {
           </div>
           <button
             onClick={this.handleLogin.bind(null)}
-            className={classes.input__btn}
+            className={disable ? classes.input__btn__opacity : classes.input__btn}
+            disabled={disable}
             type="submit">
             Войти
           </button>

@@ -1,6 +1,5 @@
 import React from 'react';
 import LoginForm from 'components/Header/LoginForm';
-// import { Modal, ModalBody } from 'reactstrap';
 import Modal from 'react-modal';
 import classes from 'styles/header.module.scss';
 
@@ -8,7 +7,11 @@ interface IState {
   modal: boolean;
 }
 
-export default class Login extends React.Component<{}, IState> {
+interface IProps {
+  updateUser: (user: any) => void;
+}
+
+export default class Login extends React.Component<IProps, IState> {
   constructor(props: any) {
     super(props);
     this.state = {
@@ -49,7 +52,7 @@ export default class Login extends React.Component<{}, IState> {
               zIndex: 20,
             },
           }}>
-          <LoginForm />
+          <LoginForm updateUser={this.props.updateUser} />
         </Modal>
       </div>
     );

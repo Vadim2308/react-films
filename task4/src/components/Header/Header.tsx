@@ -1,7 +1,13 @@
-import classes from 'styles/header.module.scss';
 import Login from 'components/Header/Login';
+import User from 'components/Header/User';
+import classes from 'styles/header.module.scss';
 
-function Header() {
+interface IProps {
+  updateUser: (user: any) => void;
+  user?: null;
+}
+
+const Header = ({ updateUser, user }: IProps) => {
   return (
     <nav className={classes.header}>
       <div className={classes.header__inner}>
@@ -11,10 +17,10 @@ function Header() {
             <a>Фильмы</a>
           </li>
         </ul> */}
-        <Login />
+        {user ? <User user={user} /> : <Login updateUser={updateUser} />}
       </div>
     </nav>
   );
-}
+};
 
 export default Header;
