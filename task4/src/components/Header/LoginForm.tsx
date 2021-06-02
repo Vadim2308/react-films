@@ -15,6 +15,7 @@ interface IState {
 
 interface IProps {
   updateUser: (user: any) => void;
+  updateSessionId: (session_id: any) => void;
 }
 
 export default class LoginForm extends React.Component<IProps, IState> {
@@ -89,6 +90,7 @@ export default class LoginForm extends React.Component<IProps, IState> {
         }),
       },
     );
+    this.props.updateSessionId(session_id);
     const user: any = await fetchApi(
       `${API_URL}/account?api_key=${API_KEY_STORE_FILM}&session_id=${session_id}`,
     );

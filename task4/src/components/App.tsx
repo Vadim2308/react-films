@@ -6,9 +6,14 @@ import MovieList from './Movies/MovieList';
 import Filters from './Filters/Filters';
 import Pagination from './Pagination/Pagination';
 import { IFilters, TGenre } from 'types/global';
+import { API_URL, API_KEY_STORE_FILM, userFromCookies } from 'api/api';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 type TState = {
   user?: null;
+  session_id?: null;
   page: number;
   filters: IFilters;
 };
@@ -18,6 +23,7 @@ class App extends React.Component<{}, TState> {
     super(props);
     this.state = {
       user: null,
+      session_id: null,
       page: 1,
       filters: {
         sort_by: 'popularity.desc',
@@ -29,11 +35,26 @@ class App extends React.Component<{}, TState> {
     };
   }
 
+  componentDidMount() {
+    const session_id = cookies.get('session_id');
+    console.log(session_id);
+  }
+
   updateUser = (user: any) => {
     this.setState((prevState) => {
       return {
         ...prevState,
         user: user,
+      };
+    });
+  };
+
+  updateSessionId = (session_id: any) => {
+    cookies.set('session_id', session_id, { path: '/', maxAge: 604800 });
+    this.setState((prevState) => {
+      return {
+        ...prevState,
+        session_id: session_id,
       };
     });
   };
@@ -116,7 +137,7 @@ class App extends React.Component<{}, TState> {
     return (
       <div className={classes.main}>
         <div className={classes.container}>
-          <Header user={user} updateUser={this.updateUser} />
+          <Header user={user} updateUser={this.updateUser} updateSessionId={this.updateSessionId} />
           <Slider />
           <Filters
             filters={filters}

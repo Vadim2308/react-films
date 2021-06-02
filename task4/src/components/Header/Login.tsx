@@ -9,6 +9,7 @@ interface IState {
 
 interface IProps {
   updateUser: (user: any) => void;
+  updateSessionId: (session_id: any) => void;
 }
 
 export default class Login extends React.Component<IProps, IState> {
@@ -28,7 +29,6 @@ export default class Login extends React.Component<IProps, IState> {
   };
 
   render() {
-    console.log(this.state);
     return (
       <div className={classes.login}>
         <button onClick={this.toggleModal.bind(null)} className={classes.login__btn} type="button">
@@ -52,7 +52,10 @@ export default class Login extends React.Component<IProps, IState> {
               zIndex: 20,
             },
           }}>
-          <LoginForm updateUser={this.props.updateUser} />
+          <LoginForm
+            updateUser={this.props.updateUser}
+            updateSessionId={this.props.updateSessionId}
+          />
         </Modal>
       </div>
     );
