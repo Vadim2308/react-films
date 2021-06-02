@@ -6,7 +6,7 @@ import MovieList from './Movies/MovieList';
 import Filters from './Filters/Filters';
 import Pagination from './Pagination/Pagination';
 import { IFilters, TGenre } from 'types/global';
-import { API_URL, API_KEY_STORE_FILM, userFromCookies } from 'api/api';
+import { API_URL, API_KEY_STORE_FILM } from 'api/api';
 import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
@@ -37,7 +37,21 @@ class App extends React.Component<{}, TState> {
 
   componentDidMount() {
     const session_id = cookies.get('session_id');
-    console.log(session_id);
+    if (session_id) {
+      let userFromCookies = async () => {
+        let response = await fetch(
+          `${API_URL}/account?api_key=${API_KEY_STORE_FILM}&session_id=${session_id}`,
+        );
+        let user = await response.json();
+        this.setState((prevState) => {
+          return {
+            ...prevState,
+            user: user,
+          };
+        });
+      };
+      userFromCookies();
+    }
   }
 
   updateUser = (user: any) => {
