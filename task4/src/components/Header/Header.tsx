@@ -6,7 +6,7 @@ import { TUser } from 'types/global';
 interface IProps {
   updateUser: (user: TUser) => void;
   updateSessionId: (session_id: string) => void;
-  user?: TUser | null;
+  user: TUser | null;
 }
 
 const Header = ({ updateUser, user, updateSessionId }: IProps) => {

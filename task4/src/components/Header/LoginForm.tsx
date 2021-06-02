@@ -1,6 +1,7 @@
 import React from 'react';
 import { API_URL, API_KEY_STORE_FILM } from 'api/api';
 import classes from 'styles/header.module.scss';
+import { TUser } from 'types/global';
 
 interface IState {
   username: string;
@@ -14,7 +15,7 @@ interface IState {
 }
 
 interface IProps {
-  updateUser: (user: any) => void;
+  updateUser: (user: TUser) => void;
   updateSessionId: (session_id: string) => void;
 }
 
@@ -91,7 +92,7 @@ export default class LoginForm extends React.Component<IProps, IState> {
       },
     );
     this.props.updateSessionId(session_id);
-    const user = await fetchApi(
+    const user: any = await fetchApi(
       `${API_URL}/account?api_key=${API_KEY_STORE_FILM}&session_id=${session_id}`,
     );
     this.props.updateUser(user);

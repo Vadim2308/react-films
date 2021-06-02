@@ -12,7 +12,7 @@ import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
 type TState = {
-  user?: TUser | null;
+  user: TUser | null;
   session_id?: null | string;
   page: number;
   filters: IFilters;
