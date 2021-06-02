@@ -1,11 +1,12 @@
 import Login from 'components/Header/Login';
 import User from 'components/Header/User';
 import classes from 'styles/header.module.scss';
+import { TUser } from 'types/global';
 
 interface IProps {
-  updateUser: (user: any) => void;
-  updateSessionId: (session_id: any) => void;
-  user?: null;
+  updateUser: (user: TUser) => void;
+  updateSessionId: (session_id: string) => void;
+  user?: TUser | null;
 }
 
 const Header = ({ updateUser, user, updateSessionId }: IProps) => {

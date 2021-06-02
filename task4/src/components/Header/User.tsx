@@ -1,9 +1,10 @@
 import React from 'react';
 import avatar from 'assests/images/header/avatar.png';
 import classes from 'styles/header.module.scss';
+import { TUser } from 'types/global';
 
 interface IProps {
-  user: any;
+  user: TUser;
 }
 
 export default class User extends React.Component<IProps> {

@@ -1,6 +1,8 @@
 import React from 'react';
 import LoginForm from 'components/Header/LoginForm';
 import Modal from 'react-modal';
+import { TUser } from 'types/global';
+
 import classes from 'styles/header.module.scss';
 
 interface IState {
@@ -8,12 +10,12 @@ interface IState {
 }
 
 interface IProps {
-  updateUser: (user: any) => void;
-  updateSessionId: (session_id: any) => void;
+  updateUser: (user: TUser) => void;
+  updateSessionId: (session_id: string) => void;
 }
 
 export default class Login extends React.Component<IProps, IState> {
-  constructor(props: any) {
+  constructor(props: IProps) {
     super(props);
     this.state = {
       modal: false,

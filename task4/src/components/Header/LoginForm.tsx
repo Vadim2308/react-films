@@ -15,7 +15,7 @@ interface IState {
 
 interface IProps {
   updateUser: (user: any) => void;
-  updateSessionId: (session_id: any) => void;
+  updateSessionId: (session_id: string) => void;
 }
 
 export default class LoginForm extends React.Component<IProps, IState> {
@@ -30,7 +30,7 @@ export default class LoginForm extends React.Component<IProps, IState> {
   }
 
   LoginUser = async () => {
-    const fetchApi = (url: any, options = {}) => {
+    const fetchApi = (url: string, options = {}) => {
       return new Promise((resolve, reject) => {
         fetch(url, options)
           .then((response) => {
@@ -44,7 +44,7 @@ export default class LoginForm extends React.Component<IProps, IState> {
             resolve(data);
           })
           .catch((response) => {
-            response.json().then((error: any) => {
+            response.json().then(() => {
               this.setState((prevState) => {
                 return {
                   ...prevState,
@@ -91,13 +91,13 @@ export default class LoginForm extends React.Component<IProps, IState> {
       },
     );
     this.props.updateSessionId(session_id);
-    const user: any = await fetchApi(
+    const user = await fetchApi(
       `${API_URL}/account?api_key=${API_KEY_STORE_FILM}&session_id=${session_id}`,
     );
     this.props.updateUser(user);
   };
 
-  changeInput = (event: any) => {
+  changeInput: React.ChangeEventHandler<HTMLInputElement> = (event) => {
     const name = event.target.name;
     const value = event.target.value;
     this.setState((prevState) => {
@@ -120,7 +120,7 @@ export default class LoginForm extends React.Component<IProps, IState> {
     return errors;
   };
 
-  handleLogin = (event: any) => {
+  handleLogin: React.MouseEventHandler<HTMLButtonElement> = (event) => {
     event.preventDefault();
     const errors = this.validatingInputs();
     if (errors.username === '' && errors.password === '') {

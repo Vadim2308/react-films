@@ -5,15 +5,15 @@ import Slider from './Slider/Slider';
 import MovieList from './Movies/MovieList';
 import Filters from './Filters/Filters';
 import Pagination from './Pagination/Pagination';
-import { IFilters, TGenre } from 'types/global';
+import { IFilters, TGenre, TUser } from 'types/global';
 import { API_URL, API_KEY_STORE_FILM } from 'api/api';
 import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
 
 type TState = {
-  user?: null;
-  session_id?: null;
+  user?: TUser | null;
+  session_id?: null | string;
   page: number;
   filters: IFilters;
 };
@@ -54,7 +54,7 @@ class App extends React.Component<{}, TState> {
     }
   }
 
-  updateUser = (user: any) => {
+  updateUser = (user: TUser) => {
     this.setState((prevState) => {
       return {
         ...prevState,
@@ -63,7 +63,7 @@ class App extends React.Component<{}, TState> {
     });
   };
 
-  updateSessionId = (session_id: any) => {
+  updateSessionId = (session_id: string) => {
     cookies.set('session_id', session_id, { path: '/', maxAge: 604800 });
     this.setState((prevState) => {
       return {
