@@ -19,11 +19,7 @@ const Header = ({ updateUser, user, updateSessionId }: IProps) => {
             <a>Фильмы</a>
           </li>
         </ul> */}
-        {user ? (
-          <User user={user} />
-        ) : (
-          <Login updateUser={updateUser} updateSessionId={updateSessionId} />
-        )}
+        {user ? <User /> : <Login updateUser={updateUser} updateSessionId={updateSessionId} />}
       </div>
     </nav>
   );

@@ -1,24 +1,20 @@
 import React from 'react';
 import avatar from 'assests/images/header/avatar.png';
 import classes from 'styles/header.module.scss';
-import { TUser } from 'types/global';
+import { AppContext } from '../App';
 
-interface IProps {
-  user: TUser;
-}
-
-export default class User extends React.Component<IProps> {
-  render() {
-    const { user } = this.props;
-    console.log(user);
-    return (
-      <div className={classes.user}>
-        <div className={classes.user_inner}>
-          <img className={classes.user_inner__img} src={avatar} alt="" />
-          <h3 className={classes.user_inner__title}>Привет, {user.username}!</h3>
-        </div>
-        <button className={classes.btn_exit}>Выйти</button>
+const User = () => {
+  const context = React.useContext(AppContext);
+  const username = context.user?.username;
+  return (
+    <div className={classes.user}>
+      <div className={classes.user_inner}>
+        <img className={classes.user_inner__img} src={avatar} alt="" />
+        <h3 className={classes.user_inner__title}>Привет, {username}!</h3>
       </div>
-    );
-  }
-}
+      <button className={classes.btn_exit}>Выйти</button>
+    </div>
+  );
+};
+
+export default User;

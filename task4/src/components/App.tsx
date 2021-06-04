@@ -18,6 +18,18 @@ type TState = {
   filters: IFilters;
 };
 
+interface IAppContext {
+  user: TUser | null;
+  updateUser: (user: TUser) => void;
+  updateSessionId: (session_id: string) => void;
+}
+
+export const AppContext = React.createContext<IAppContext>({
+  user: null,
+  updateUser: () => {},
+  updateSessionId: () => {},
+});
+
 class App extends React.Component<{}, TState> {
   constructor(props: {}) {
     super(props);
@@ -149,23 +161,34 @@ class App extends React.Component<{}, TState> {
   render() {
     const { filters, page, user } = this.state;
     return (
-      <div className={classes.main}>
-        <div className={classes.container}>
-          <Header user={user} updateUser={this.updateUser} updateSessionId={this.updateSessionId} />
-          <Slider />
-          <Filters
-            filters={filters}
-            onChangeFilter={this.onChangeFilter}
-            setGenre={this.setGenre}
-            handleChangeGanre={this.handleChangeGanre}
-            resetState={this.resetState}
-          />
-          <div className={classes.main_inner}>
-            <Pagination page={page} onChangePage={this.onChangePage} />
-            <MoviesContainer page={page} filters={filters} />
+      <AppContext.Provider
+        value={{
+          user,
+          updateUser: this.updateUser,
+          updateSessionId: this.updateSessionId,
+        }}>
+        <div className={classes.main}>
+          <div className={classes.container}>
+            <Header
+              user={user}
+              updateUser={this.updateUser}
+              updateSessionId={this.updateSessionId}
+            />
+            <Slider />
+            <Filters
+              filters={filters}
+              onChangeFilter={this.onChangeFilter}
+              setGenre={this.setGenre}
+              handleChangeGanre={this.handleChangeGanre}
+              resetState={this.resetState}
+            />
+            <div className={classes.main_inner}>
+              <Pagination page={page} onChangePage={this.onChangePage} />
+              <MoviesContainer page={page} filters={filters} />
+            </div>
           </div>
         </div>
-      </div>
+      </AppContext.Provider>
     );
   }
 }
