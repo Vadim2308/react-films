@@ -169,11 +169,7 @@ class App extends React.Component<{}, TState> {
         }}>
         <div className={classes.main}>
           <div className={classes.container}>
-            <Header
-              user={user}
-              updateUser={this.updateUser}
-              updateSessionId={this.updateSessionId}
-            />
+            <Header user={user} />
             <Slider />
             <Filters
               filters={filters}

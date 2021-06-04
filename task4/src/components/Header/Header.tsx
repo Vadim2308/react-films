@@ -1,15 +1,13 @@
-import Login from 'components/Header/Login';
+import LoginModal from 'components/Header/LoginModal';
 import User from 'components/Header/User';
 import classes from 'styles/header.module.scss';
 import { TUser } from 'types/global';
 
 interface IProps {
-  updateUser: (user: TUser) => void;
-  updateSessionId: (session_id: string) => void;
   user: TUser | null;
 }
 
-const Header = ({ updateUser, user, updateSessionId }: IProps) => {
+const Header = ({ user }: IProps) => {
   return (
     <nav className={classes.header}>
       <div className={classes.header__inner}>
@@ -19,7 +17,7 @@ const Header = ({ updateUser, user, updateSessionId }: IProps) => {
             <a>Фильмы</a>
           </li>
         </ul> */}
-        {user ? <User /> : <Login updateUser={updateUser} updateSessionId={updateSessionId} />}
+        {user ? <User /> : <LoginModal />}
       </div>
     </nav>
   );

@@ -2,6 +2,7 @@ import React from 'react';
 import LoginForm from 'components/Header/LoginForm';
 import Modal from 'react-modal';
 import { TUser } from 'types/global';
+import { AppContext } from '../App';
 
 import classes from 'styles/header.module.scss';
 
@@ -14,7 +15,7 @@ interface IProps {
   updateSessionId: (session_id: string) => void;
 }
 
-export default class Login extends React.Component<IProps, IState> {
+class LoginModal extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
     this.state = {
@@ -54,12 +55,23 @@ export default class Login extends React.Component<IProps, IState> {
               zIndex: 20,
             },
           }}>
-          <LoginForm
-            updateUser={this.props.updateUser}
-            updateSessionId={this.props.updateSessionId}
-          />
+          <LoginForm />
         </Modal>
       </div>
     );
   }
 }
+
+const LoginContainer = () => {
+  return (
+    <AppContext.Consumer>
+      {(context) => {
+        return (
+          <LoginModal updateUser={context.updateUser} updateSessionId={context.updateSessionId} />
+        );
+      }}
+    </AppContext.Consumer>
+  );
+};
+
+export default LoginContainer;

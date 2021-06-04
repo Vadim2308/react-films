@@ -5,7 +5,7 @@ import { AppContext } from '../App';
 
 const User = () => {
   const context = React.useContext(AppContext);
-  const username = context.user?.username;
+  const username = context.user!.username;
   return (
     <div className={classes.user}>
       <div className={classes.user_inner}>
