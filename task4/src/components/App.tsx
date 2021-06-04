@@ -2,7 +2,7 @@ import React from 'react';
 import classes from 'styles/App.module.scss';
 import Header from './Header/Header';
 import Slider from './Slider/Slider';
-import MovieList from './Movies/MovieList';
+import MoviesContainer from './Movies/MoviesContainer';
 import Filters from './Filters/Filters';
 import Pagination from './Pagination/Pagination';
 import { IFilters, TGenre, TUser } from 'types/global';
@@ -162,7 +162,7 @@ class App extends React.Component<{}, TState> {
           />
           <div className={classes.main_inner}>
             <Pagination page={page} onChangePage={this.onChangePage} />
-            <MovieList page={page} filters={filters} />
+            <MoviesContainer page={page} filters={filters} />
           </div>
         </div>
       </div>
