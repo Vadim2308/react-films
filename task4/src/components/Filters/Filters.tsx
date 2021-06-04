@@ -1,7 +1,7 @@
 import React from 'react';
 import SortBy from './SortBy';
 import { ReleaseYear } from './ReleaseYear';
-import Genres from './Genres';
+import GenresContainer from './GenresContainer';
 import VoiteAverage from './VoiteAverage';
 import ResetFilters from './ResetFilters';
 import classes from 'styles/filters.module.scss';
@@ -29,7 +29,11 @@ class Filters extends React.Component<TProps> {
         <div className={classes.filters}>
           <SortBy sort_by={sort_by} onChangeFilter={onChangeFilter} />
           <ReleaseYear year={year} onChangeFilter={onChangeFilter} />
-          <Genres genres={genres} setGenre={setGenre} handleChangeGanre={handleChangeGanre} />
+          <GenresContainer
+            genres={genres}
+            setGenre={setGenre}
+            handleChangeGanre={handleChangeGanre}
+          />
           <VoiteAverage voite={voite} onChangeFilter={onChangeFilter} />
           <ResetFilters resetState={resetState} />
         </div>

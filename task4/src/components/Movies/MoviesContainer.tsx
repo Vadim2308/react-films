@@ -1,8 +1,6 @@
 import React from 'react';
 import MovieList from './MovieList';
 import { API_URL, API_KEY_STORE_FILM } from 'api/api';
-import Page404 from './Page404';
-import classes from 'styles/movies.module.scss';
 import { IFilters, IFilms, TMovie } from 'types/global';
 
 type TProps = {

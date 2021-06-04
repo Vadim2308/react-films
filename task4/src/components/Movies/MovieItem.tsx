@@ -1,4 +1,3 @@
-import React from 'react';
 import altImg from 'assests/images/movieItem/alt.jpg';
 import classes from 'styles/movies.module.scss';
 import { TMovie } from 'types/global';
