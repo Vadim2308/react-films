@@ -22,12 +22,14 @@ interface IAppContext {
   user: TUser | null;
   updateUser: (user: TUser) => void;
   updateSessionId: (session_id: string) => void;
+  onLogOut: () => void;
 }
 
 export const AppContext = React.createContext<IAppContext>({
   user: null,
   updateUser: () => {},
   updateSessionId: () => {},
+  onLogOut: () => {},
 });
 
 class App extends React.Component<{}, TState> {
@@ -81,6 +83,16 @@ class App extends React.Component<{}, TState> {
       return {
         ...prevState,
         session_id: session_id,
+      };
+    });
+  };
+
+  onLogOut = () => {
+    cookies.remove('session_id');
+    this.setState(() => {
+      return {
+        user: null,
+        session_id: null,
       };
     });
   };
@@ -166,6 +178,7 @@ class App extends React.Component<{}, TState> {
           user,
           updateUser: this.updateUser,
           updateSessionId: this.updateSessionId,
+          onLogOut: this.onLogOut,
         }}>
         <div className={classes.main}>
           <div className={classes.container}>

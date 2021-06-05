@@ -6,13 +6,16 @@ import { AppContext } from '../App';
 const User = () => {
   const context = React.useContext(AppContext);
   const username = context.user!.username;
+  const onLogout = context.onLogOut;
   return (
     <div className={classes.user}>
       <div className={classes.user_inner}>
         <img className={classes.user_inner__img} src={avatar} alt="" />
-        <h3 className={classes.user_inner__title}>Привет, {username}!</h3>
+        <h3 className={classes.user_inner__title}>{username}</h3>
       </div>
-      <button className={classes.btn_exit}>Выйти</button>
+      <button onClick={onLogout} className={classes.btn_exit}>
+        Выйти
+      </button>
     </div>
   );
 };
