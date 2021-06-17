@@ -39,7 +39,7 @@ class LoginForm extends React.Component<IProps, IState> {
             if (response.status < 400) {
               return response.json();
             } else {
-              throw response;
+              throw response; ///reject
             }
           })
           .then((data) => {

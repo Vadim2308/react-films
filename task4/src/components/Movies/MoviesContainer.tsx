@@ -2,29 +2,28 @@ import React from 'react';
 import MovieList from './MovieList';
 import { API_URL, API_KEY_STORE_FILM } from 'api/api';
 import { IFilters, IFilms, TMovie } from 'types/global';
+import { connect } from 'react-redux';
+import { setMovies } from 'redux/actions/setMovies';
 
 type TProps = {
+  movies: [] | IFilms;
   page: number;
   filters: IFilters;
+  setMovies: (data: IFilms) => void;
 };
 
-type TState = IFilms;
-
-export default class MoviesContainer extends React.Component<TProps, TState> {
+class MoviesContainer extends React.Component<TProps> {
   constructor(props: TProps) {
     super(props);
-
-    this.state = {
-      movies: [],
-    };
   }
 
   componentDidMount() {
-    this.getMovies(this.props);
+    this.getMovies();
   }
 
-  getMovies = ({ page }: TProps) => {
+  getMovies = () => {
     const {
+      page,
       filters: { sort_by, year, filteredGenre, voite },
     } = this.props;
     const currentGenre = filteredGenre.join(',');
@@ -42,22 +41,43 @@ export default class MoviesContainer extends React.Component<TProps, TState> {
     fetch(link)
       .then((response) => response.json())
       .then((data) => {
-        this.setState(() => {
-          return {
-            movies: data.results,
-          };
-        });
+        this.props.setMovies(data.results);
       });
   };
 
   componentDidUpdate(prevProps: TProps) {
-    if (prevProps !== this.props) {
-      this.getMovies(this.props);
+    if (prevProps.page !== this.props.page) {
+      this.getMovies();
+    }
+    if (prevProps.filters !== this.props.filters) {
+      this.getMovies();
     }
   }
 
   render() {
-    const { movies } = this.state;
+    const { movies } = this.props;
     return <MovieList movies={movies} />;
   }
 }
+
+type TMoviesFromProps = {
+  movies: [] | IFilms;
+};
+
+interface IMapStateToProps {
+  moviesState: TMoviesFromProps;
+}
+
+function mapStateToProps(state: IMapStateToProps) {
+  return {
+    movies: state.moviesState.movies,
+  };
+}
+
+function mapDispatchToProps(dispatch: any) {
+  return {
+    setMovies: (movies: IFilms) => dispatch(setMovies(movies)),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MoviesContainer);
