@@ -1,17 +1,24 @@
-const initialState = {
+import { IActionType } from 'redux/actions/setMovies';
+import { TMovie, IFilms } from 'types/global';
+
+interface IState {
+  movies: [] | IFilms;
+}
+
+const initialState: IState = {
   movies: [],
 };
 
-export default function moviesReducer(state = initialState, action: any) {
+export default function moviesReducer(movies: IState = initialState, action: IActionType): IState {
   switch (action.type) {
     case 'SET_ALL_MOVIES': {
       return {
-        ...state,
+        ...movies,
         ...action.payload,
       };
     }
     default: {
-      return state;
+      return movies;
     }
   }
 }
