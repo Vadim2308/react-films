@@ -11,8 +11,8 @@ interface IState {
 }
 
 interface IProps {
-  updateUser: (user: TUser) => void;
-  updateSessionId: (session_id: string) => void;
+  updateUser?: (user: TUser) => void;
+  updateSessionId?: (session_id: string) => void;
 }
 
 class LoginModal extends React.Component<IProps, IState> {

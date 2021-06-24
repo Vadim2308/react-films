@@ -5,9 +5,9 @@ import Slider from './Slider/Slider';
 import MoviesContainer from './Movies/MoviesContainer';
 import Filters from './Filters/Filters';
 import Pagination from './Pagination/Pagination';
-import { IFilters, TGenre, TUser } from 'types/global';
+import { IFilters, TGenre, TUser, IAppState } from 'types/global';
 import { API_URL, API_KEY_STORE_FILM } from 'api/api';
-import { connect, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Cookies from 'universal-cookie';
 import { useEffect } from 'react';
 
@@ -34,18 +34,9 @@ const cookies = new Cookies();
 //   filters: IFilters;
 // };
 
-type TState = {
-  App: {
-    user: TUser | null;
-    session_id?: null | string;
-    page: number;
-    filters: IFilters;
-  };
-};
-
 function App() {
-  const page = useSelector((state: TState) => state.App.page);
-  const filters = useSelector((state: TState) => state.App.filters);
+  const page = useSelector((state: IAppState) => state.App.page);
+  const filters = useSelector((state: IAppState) => state.App.filters);
 
   useEffect(() => {
     const session_id = cookies.get('session_id');
@@ -64,6 +55,7 @@ function App() {
   return (
     <div className={classes.main}>
       <div className={classes.container}>
+        <Header />
         <div className={classes.main_inner}>
           <Pagination page={page} />
           <MoviesContainer page={page} filters={filters} />

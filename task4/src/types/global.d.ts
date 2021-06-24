@@ -36,6 +36,15 @@ export interface IFilms {
   };
 }
 
+export type IAppState = {
+  App: {
+    user: TUser | null;
+    session_id?: null | string;
+    page: number;
+    filters: IFilters;
+  };
+};
+
 export type TUser = {
   avatar: {
     gravatar: {
