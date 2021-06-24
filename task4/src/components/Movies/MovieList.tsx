@@ -1,10 +1,10 @@
 import MovieItem from './MovieItem';
 import Page404 from './Page404';
 import classes from 'styles/movies.module.scss';
-import { IFilms, TMovie } from 'types/global';
+import { TMovie } from 'types/global';
 
 type TProps = {
-  movies: [] | IFilms;
+  movies: TMovie[];
 };
 
 const MovieList = ({ movies }: TProps) => {

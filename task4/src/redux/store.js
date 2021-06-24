@@ -15,10 +15,12 @@
 // export default store;
 
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import appSlice from './toolkitSlice';
+import appSlice from './appSlice';
+import moviesSlice from './moviesSlice';
 
 const rootReducer = combineReducers({
-  appState: appSlice,
+  App: appSlice,
+  Movies: moviesSlice,
 });
 
 const store = configureStore({

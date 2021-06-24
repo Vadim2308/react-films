@@ -31,9 +31,9 @@ export type TMovie = {
 };
 
 export interface IFilms {
-  movies: TMovie[];
-  length: number;
-  map: (movie) => {};
+  Movies: {
+    movies: TMovie[];
+  };
 }
 
 export type TUser = {

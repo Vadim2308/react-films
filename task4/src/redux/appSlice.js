@@ -16,17 +16,10 @@ const appSlice = createSlice({
   },
   reducers: {
     changePage(state, action) {
-      console.log(action.payload);
       state.page = action.payload;
     },
-    //     nextPage(state) {
-    //       state.page = state.page + 1;
-    //     },
-    //     prevPage(state) {
-    //       state.page = state.page - 1;
-    //     },
   },
 });
 
 export default appSlice.reducer;
-export const { nextPage, prevPage, changePage } = appSlice.actions;
+export const { changePage } = appSlice.actions;

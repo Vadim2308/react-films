@@ -2,7 +2,7 @@ import classes from 'styles/pagination.module.scss';
 import prevPageIcon from 'assests/images/pagination/left-arrow.svg';
 import nextPageIcon from 'assests/images/pagination/right-arrow.svg';
 import { useDispatch } from 'react-redux';
-import { changePage } from 'redux/toolkitSlice';
+import { changePage } from 'redux/appSlice';
 
 type TProps = {
   page: number;

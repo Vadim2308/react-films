@@ -35,7 +35,7 @@ const cookies = new Cookies();
 // };
 
 type TState = {
-  appState: {
+  App: {
     user: TUser | null;
     session_id?: null | string;
     page: number;
@@ -44,8 +44,8 @@ type TState = {
 };
 
 function App() {
-  const page = useSelector((state: TState) => state.appState.page);
-  const filters = useSelector((state: TState) => state.appState.filters);
+  const page = useSelector((state: TState) => state.App.page);
+  const filters = useSelector((state: TState) => state.App.filters);
 
   useEffect(() => {
     const session_id = cookies.get('session_id');
@@ -66,7 +66,7 @@ function App() {
       <div className={classes.container}>
         <div className={classes.main_inner}>
           <Pagination page={page} />
-          {/* <MoviesContainer page={page} filters={filters} /> */}
+          <MoviesContainer page={page} filters={filters} />
         </div>
       </div>
     </div>
