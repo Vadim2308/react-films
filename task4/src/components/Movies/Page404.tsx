@@ -1,6 +1,5 @@
 import classes from 'styles/movies.module.scss';
 import React from 'react';
-import { clearInterval } from 'timers';
 
 type TState = {
   loading: boolean;

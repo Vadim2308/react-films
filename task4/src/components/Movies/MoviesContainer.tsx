@@ -1,7 +1,7 @@
 import React from 'react';
 import MovieList from './MovieList';
 import { API_URL, API_KEY_STORE_FILM } from 'api/api';
-import { IFilters, IFilms, TMovie } from 'types/global';
+import { IFilters, IFilms } from 'types/global';
 import { connect } from 'react-redux';
 import { setMovies } from 'redux/actions/setMovies';
 

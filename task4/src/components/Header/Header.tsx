@@ -17,7 +17,7 @@ const Header = ({ user }: IProps) => {
             <a>Фильмы</a>
           </li>
         </ul> */}
-        {user ? <User /> : <LoginModal />}
+        {/* {user ? <User /> : <LoginModal />} */}
       </div>
     </nav>
   );

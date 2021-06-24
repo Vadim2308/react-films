@@ -2,7 +2,7 @@ import React from 'react';
 import { API_URL, API_KEY_STORE_FILM } from 'api/api';
 import classes from 'styles/header.module.scss';
 import { TUser } from 'types/global';
-import { AppContext } from '../App';
+// import { AppContext } from '../App';
 
 interface IState {
   username: string;
@@ -193,16 +193,17 @@ class LoginForm extends React.Component<IProps, IState> {
   }
 }
 
-const LoginFormContainer = () => {
-  return (
-    <AppContext.Consumer>
-      {(context) => {
-        return (
-          <LoginForm updateUser={context.updateUser} updateSessionId={context.updateSessionId} />
-        );
-      }}
-    </AppContext.Consumer>
-  );
-};
+// const LoginFormContainer = () => {
+//   return (
+//     <AppContext.Consumer>
+//       {(context) => {
+//         return (
+//           <LoginForm updateUser={context.updateUser} updateSessionId={context.updateSessionId} />
+//         );
+//       }}
+//     </AppContext.Consumer>
+//   );
+// };
 
-export default LoginFormContainer;
+//export default LoginFormContainer;
+export default LoginForm;
