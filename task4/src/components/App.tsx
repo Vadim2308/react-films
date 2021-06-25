@@ -57,13 +57,7 @@ function App() {
       <div className={classes.container}>
         <Header />
         <Slider />
-        <Filters
-          filters={filters}
-          // onChangeFilter={this.onChangeFilter}
-          // setGenre={this.setGenre}
-          // handleChangeGanre={this.handleChangeGanre}
-          // resetState={this.resetState}
-        />
+        <Filters filters={filters} />
         <div className={classes.main_inner}>
           <Pagination page={page} />
           <MoviesContainer page={page} filters={filters} />

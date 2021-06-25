@@ -5,16 +5,19 @@ import { TGenre } from 'types/global';
 
 interface IProps {
   genres: TGenre[];
-  setGenre: (data: TGenre[]) => void;
-  handleChangeGanre: (id: string) => void;
   handleClick: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
   clickCheckBox: (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
   rotatedArrow: boolean;
   visiblePopup: boolean;
 }
 
-const Genres = (props: IProps) => {
-  const { clickCheckBox, genres, handleClick, rotatedArrow, visiblePopup } = props;
+const Genres: React.FC<IProps> = ({
+  clickCheckBox,
+  genres,
+  handleClick,
+  rotatedArrow,
+  visiblePopup,
+}) => {
   return (
     <div data-set="input" className={classes.genre} onClick={handleClick}>
       <div data-set="input" className={classes.genre_header}>

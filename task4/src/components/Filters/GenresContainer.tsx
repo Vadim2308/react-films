@@ -2,6 +2,9 @@ import React from 'react';
 import Genres from './Genres';
 import { API_URL, API_KEY_STORE_FILM } from 'api/api';
 import { TGenre } from 'types/global';
+import { useState, useEffect } from 'react';
+import { downloadGenreFromApi, changeGenre } from 'redux/appSlice';
+import { useDispatch } from 'react-redux';
 
 type TState = {
   visiblePopup: boolean;
@@ -10,62 +13,61 @@ type TState = {
 
 interface IProps {
   genres: TGenre[];
-  setGenre: (data: TGenre[]) => void;
-  handleChangeGanre: (id: string) => void;
+  filteredGenre: string[];
 }
 
-class GenresContainer extends React.Component<IProps, TState> {
-  constructor(props: IProps) {
-    super(props);
-    this.state = {
-      visiblePopup: false,
-      rotatedArrow: false,
-    };
-  }
+const GenresContainer: React.FC<IProps> = ({ genres, filteredGenre }) => {
+  const [visiblePopup, setVisiblePopup] = useState(false);
+  const [rotatedArrow, setRotatedArrow] = useState(false);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    return getGenres();
+  }, []);
 
-  getGenres = () => {
+  const getGenres = () => {
     const link = `${API_URL}/genre/movie/list?api_key=${API_KEY_STORE_FILM}&language=ru-RU`;
     fetch(link)
       .then((response) => response.json())
       .then((data) => {
-        return this.props.setGenre(data.genres);
+        return dispatch(downloadGenreFromApi(data.genres));
       });
   };
 
-  componentDidMount() {
-    return this.getGenres();
-  }
-
-  handleClick: React.MouseEventHandler<HTMLDivElement> = (
+  const handleClick: React.MouseEventHandler<HTMLDivElement> = (
     event: React.MouseEvent<HTMLDivElement, MouseEvent>,
   ): void => {
     if (event.currentTarget.dataset.set === 'input') {
-      this.setState(() => {
-        return {
-          visiblePopup: !this.state.visiblePopup,
-          rotatedArrow: !this.state.rotatedArrow,
-        };
-      });
+      setVisiblePopup(!visiblePopup);
+      setRotatedArrow(!rotatedArrow);
     }
   };
 
-  clickCheckBox: React.MouseEventHandler<HTMLInputElement> = (
+  const handleChangeGenre = (id: string) => {
+    let newGenre: string[] = [];
+    if (filteredGenre.includes(id)) {
+      newGenre = filteredGenre.filter((el: string) => el !== id);
+    } else {
+      newGenre.push(...filteredGenre, id);
+    }
+    return dispatch(changeGenre(newGenre));
+  };
+
+  const clickCheckBox: React.MouseEventHandler<HTMLInputElement> = (
     event: React.MouseEvent<HTMLInputElement, MouseEvent>,
   ): void => {
     const id: string = event.currentTarget.value;
-    this.props.handleChangeGanre(id);
+    handleChangeGenre(id);
   };
 
-  render() {
-    return (
-      <Genres
-        {...this.props}
-        {...this.state}
-        handleClick={this.handleClick}
-        clickCheckBox={this.clickCheckBox}
-      />
-    );
-  }
-}
+  return (
+    <Genres
+      genres={genres}
+      visiblePopup={visiblePopup}
+      rotatedArrow={rotatedArrow}
+      handleClick={handleClick}
+      clickCheckBox={clickCheckBox}
+    />
+  );
+};
 
 export default GenresContainer;

@@ -21,8 +21,19 @@ const appSlice = createSlice({
     setFilters(state, action) {
       state.filters[action.payload.name] = action.payload.value;
     },
+    downloadGenreFromApi(state, action) {
+      state.filters.genres = action.payload;
+    },
+    changeGenre(state, action) {
+      state.filters.filteredGenre = action.payload;
+    },
+    resetState(state, action) {
+      state.page = action.payload.page;
+      state.filters = action.payload.filters;
+    },
   },
 });
 
 export default appSlice.reducer;
-export const { changePage, setFilters } = appSlice.actions;
+export const { changePage, setFilters, downloadGenreFromApi, changeGenre, resetState } =
+  appSlice.actions;
