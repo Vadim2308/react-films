@@ -38,7 +38,7 @@ const releases = [
   },
 ];
 
-const ReleaseYear = ({ year, onChangeFilter }: TProps) => {
+const ReleaseYear: React.FC<TProps> = ({ year, onChangeFilter }) => {
   const [visiblePopup, setVisiblePopup] = useState(true);
   const toggleVisiblePopup = (): void => {
     setVisiblePopup(!visiblePopup);

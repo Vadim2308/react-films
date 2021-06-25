@@ -18,8 +18,11 @@ const appSlice = createSlice({
     changePage(state, action) {
       state.page = action.payload;
     },
+    setFilters(state, action) {
+      state.filters[action.payload.name] = action.payload.value;
+    },
   },
 });
 
 export default appSlice.reducer;
-export const { changePage } = appSlice.actions;
+export const { changePage, setFilters } = appSlice.actions;

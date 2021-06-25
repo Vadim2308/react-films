@@ -26,7 +26,7 @@ const options = [
   },
 ];
 
-const SortBy = ({ sort_by, onChangeFilter }: TProps) => {
+const SortBy: React.FC<TProps> = ({ sort_by, onChangeFilter }) => {
   const [visiblePopup, setVisiblePopup] = useState(true);
   const toggleVisiblePopup: React.MouseEventHandler<HTMLSelectElement> = () => {
     setVisiblePopup(!visiblePopup);

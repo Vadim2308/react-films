@@ -30,7 +30,7 @@ type TProps = {
   onChangeFilter: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 
-const VoiteAverage = ({ voite, onChangeFilter }: TProps) => {
+const VoiteAverage: React.FC<TProps> = ({ voite, onChangeFilter }) => {
   const [visiblePopup, setVisiblePopup] = useState(true);
   const toggleVisiblePopup: React.MouseEventHandler<HTMLSelectElement> = () => {
     setVisiblePopup(!visiblePopup);
