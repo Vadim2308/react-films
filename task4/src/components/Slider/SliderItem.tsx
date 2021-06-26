@@ -5,7 +5,7 @@ type TProps = {
   activeSlide: number;
 };
 
-const SliderItem = ({ activeSlide }: TProps) => {
+const SliderItem: React.FC<TProps> = ({ activeSlide }) => {
   return (
     <div className={classes.sliders_items}>
       {SliderData.map((slide, index) => {

@@ -6,25 +6,20 @@ import { useState, useEffect } from 'react';
 import { downloadGenreFromApi, changeGenre } from 'redux/appSlice';
 import { useDispatch } from 'react-redux';
 
-type TState = {
-  visiblePopup: boolean;
-  rotatedArrow: boolean;
-};
-
 interface IProps {
   genres: TGenre[];
   filteredGenre: string[];
 }
 
 const GenresContainer: React.FC<IProps> = ({ genres, filteredGenre }) => {
-  const [visiblePopup, setVisiblePopup] = useState(false);
-  const [rotatedArrow, setRotatedArrow] = useState(false);
+  const [visiblePopup, setVisiblePopup] = useState<boolean>(false);
+  const [rotatedArrow, setRotatedArrow] = useState<boolean>(false);
   const dispatch = useDispatch();
   useEffect(() => {
     return getGenres();
   }, []);
 
-  const getGenres = () => {
+  const getGenres = (): void => {
     const link = `${API_URL}/genre/movie/list?api_key=${API_KEY_STORE_FILM}&language=ru-RU`;
     fetch(link)
       .then((response) => response.json())

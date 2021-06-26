@@ -45,6 +45,19 @@ export type IAppState = {
   };
 };
 
+export interface ILoginState {
+  Login: {
+    username: string;
+    password: string;
+    errors: {
+      username?: string;
+      password?: string;
+      invalid?: string;
+    };
+    buttonDisable: boolean;
+  };
+}
+
 export type TUser = {
   avatar: {
     gravatar: {

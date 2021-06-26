@@ -31,9 +31,22 @@ const appSlice = createSlice({
       state.page = action.payload.page;
       state.filters = action.payload.filters;
     },
+    setSessionId(state, action) {
+      state.session_id = action.payload;
+    },
+    updateUser(state, action) {
+      state.user = action.payload;
+    },
   },
 });
 
 export default appSlice.reducer;
-export const { changePage, setFilters, downloadGenreFromApi, changeGenre, resetState } =
-  appSlice.actions;
+export const {
+  changePage,
+  setFilters,
+  downloadGenreFromApi,
+  changeGenre,
+  resetState,
+  setSessionId,
+  updateUser,
+} = appSlice.actions;
