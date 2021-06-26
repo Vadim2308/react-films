@@ -37,6 +37,10 @@ const appSlice = createSlice({
     updateUser(state, action) {
       state.user = action.payload;
     },
+    onlogOut(state) {
+      state.user = null;
+      state.session_id = null;
+    },
   },
 });
 
@@ -49,4 +53,5 @@ export const {
   resetState,
   setSessionId,
   updateUser,
+  onlogOut,
 } = appSlice.actions;
