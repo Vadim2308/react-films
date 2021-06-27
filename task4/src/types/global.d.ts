@@ -1,4 +1,5 @@
 declare module '*.scss';
+declare type EventListenerOrEventListenerObject = EventListener | EventListenerObject;
 
 export type TGenre = {
   id: number;

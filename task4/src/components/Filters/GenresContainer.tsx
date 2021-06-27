@@ -2,7 +2,7 @@ import React from 'react';
 import Genres from './Genres';
 import { API_URL, API_KEY_STORE_FILM } from 'api/api';
 import { TGenre } from 'types/global';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { downloadGenreFromApi, changeGenre } from 'redux/appSlice';
 import { useDispatch } from 'react-redux';
 
@@ -12,11 +12,9 @@ interface IProps {
 }
 
 const GenresContainer: React.FC<IProps> = ({ genres, filteredGenre }) => {
-  const [visiblePopup, setVisiblePopup] = useState<boolean>(false);
-  const [rotatedArrow, setRotatedArrow] = useState<boolean>(false);
   const dispatch = useDispatch();
   useEffect(() => {
-    return getGenres();
+    getGenres();
   }, []);
 
   const getGenres = (): void => {
@@ -26,15 +24,6 @@ const GenresContainer: React.FC<IProps> = ({ genres, filteredGenre }) => {
       .then((data) => {
         return dispatch(downloadGenreFromApi(data.genres));
       });
-  };
-
-  const handleClick: React.MouseEventHandler<HTMLDivElement> = (
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
-  ): void => {
-    if (event.currentTarget.dataset.set === 'input') {
-      setVisiblePopup(!visiblePopup);
-      setRotatedArrow(!rotatedArrow);
-    }
   };
 
   const handleChangeGenre = (id: string) => {
@@ -54,15 +43,7 @@ const GenresContainer: React.FC<IProps> = ({ genres, filteredGenre }) => {
     handleChangeGenre(id);
   };
 
-  return (
-    <Genres
-      genres={genres}
-      visiblePopup={visiblePopup}
-      rotatedArrow={rotatedArrow}
-      handleClick={handleClick}
-      clickCheckBox={clickCheckBox}
-    />
-  );
+  return <Genres genres={genres} clickCheckBox={clickCheckBox} />;
 };
 
 export default GenresContainer;

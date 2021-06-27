@@ -1,3 +1,4 @@
+import React from 'react';
 import classes from 'styles/filters.module.scss';
 import dropDownIcon from 'assests/images/filters/down-arrow.svg';
 import selectIcon from 'assests/images/filters/selected.svg';
@@ -5,21 +6,37 @@ import { TGenre } from 'types/global';
 
 interface IProps {
   genres: TGenre[];
-  handleClick: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
-  clickCheckBox: (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
-  rotatedArrow: boolean;
-  visiblePopup: boolean;
+  clickCheckBox: (event: React.MouseEvent<HTMLInputElement>) => void;
 }
 
-const Genres: React.FC<IProps> = ({
-  clickCheckBox,
-  genres,
-  handleClick,
-  rotatedArrow,
-  visiblePopup,
-}) => {
+const Genres: React.FC<IProps> = ({ clickCheckBox, genres }) => {
+  const [visiblePopup, setVisiblePopup] = React.useState<boolean>(false);
+  const [rotatedArrow, setRotatedArrow] = React.useState<boolean>(false);
+
+  React.useEffect(() => {
+    document.body.addEventListener('click', outSideClick);
+  }, []);
+
+  const genresRef = React.useRef<HTMLDivElement>(null);
+
+  const outSideClick = (event: Event): void => {
+    const array = event.composedPath();
+    const elem = genresRef.current;
+    if (elem && !array.includes(elem)) {
+      setVisiblePopup(false);
+      setRotatedArrow(false);
+    }
+  };
+
+  const handleClick: React.MouseEventHandler<HTMLDivElement> = (event): void => {
+    if (event.currentTarget.dataset.set === 'input') {
+      setVisiblePopup(!visiblePopup);
+      setRotatedArrow(!rotatedArrow);
+    }
+  };
+
   return (
-    <div data-set="input" className={classes.genre} onClick={handleClick}>
+    <div ref={genresRef} data-set="input" className={classes.genre} onClick={handleClick}>
       <div data-set="input" className={classes.genre_header}>
         <h2 data-set="input" className={classes.genre_header__title}>
           Жанры
